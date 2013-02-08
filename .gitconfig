@@ -1,0 +1,11 @@
+[user]
+	name = Ranko Radonić
+	email = ranko.radonic@gmx.com
+[color]
+	diff = auto
+[diff]
+	tool = vimdiff
+[merge]
+        tool = manual
+[mergetool "manual"]
+        cmd = "vim $MERGED"
