@@ -52,16 +52,10 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" indentation for different file types
-
-autocmd filetype c setlocal shiftwidth=4 softtabstop=4
-autocmd filetype cpp setlocal shiftwidth=4 softtabstop=4
-autocmd filetype java setlocal shiftwidth=4 softtabstop=4
-
 " visual stuff
 
+let g:loaded_matchparen=1 
 autocmd BufEnter * :syntax sync fromstart
-
 set fillchars=vert:\ ,fold:-
 
 hi cursorline cterm=none
@@ -72,7 +66,6 @@ hi todo ctermbg=0 ctermfg=4
 "hi visualnos ctermbg=236 cterm=none
 hi statusline ctermbg=7 ctermfg=0 cterm=none
 hi statuslinenc ctermbg=7 ctermfg=0 cterm=bold
-"hi matchparen ctermbg=6
 
 hi diffadd ctermbg=2 ctermfg=15
 hi diffchange ctermbg=5 ctermfg=15
