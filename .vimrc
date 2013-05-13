@@ -76,9 +76,12 @@ set fillchars=vert: ,fold:-
 hi cursorline cterm=none
 hi tabline cterm=none
 hi todo ctermbg=0 ctermfg=4
+
 hi statusline ctermbg=7 ctermfg=0 cterm=none
 hi statuslinenc ctermbg=7 ctermfg=0 cterm=bold
-hi linenr ctermbg=0 ctermfg=0 cterm=bold
+hi vertsplit ctermfg=7
+
+hi linenr ctermfg=0 cterm=bold
 
 hi diffadd ctermbg=2 ctermfg=15
 hi diffchange ctermbg=5 ctermfg=15
