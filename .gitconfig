@@ -8,7 +8,7 @@
 [merge]
 	tool = splice
 [mergetool "splice"]
-	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'syntax off' -c 'SpliceInit'"
 	trustExitCode = true
 [mergetool]
 	keepBackup = false
