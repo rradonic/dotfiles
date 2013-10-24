@@ -1,61 +1,89 @@
 " basics
 
+set backupdir=~/.vim/tmp
+set directory=~/.vim/tmp
+
 set nowrap
+set hidden
+set history=1000
+
 set autoindent
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
 set laststatus=2
 set shortmess+=I
 set wildmode=longest,list
-set clipboard=unnamedplus
-set history=1000
-set hidden
-set iskeyword+=-
+
 set mouse=ar
+set clipboard=unnamedplus
+
 set ttimeout
 set ttimeoutlen=100
-set ignorecase
+
 set incsearch
+set ignorecase
+
 set foldmethod=indent
 set foldlevel=1000
+
+set iskeyword+=-
+
 filetype plugin on
 autocmd BufEnter * :syntax sync fromstart
-let g:loaded_matchparen=1
+
 runtime! macros/matchit.vim
+
+let g:loaded_matchparen=1
 
 " keyboard mappings
 
 let mapleader=","
 let maplocalleader=";"
+
 nnoremap Y y$
-nnoremap <f2> :echo "uhi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap k A
+nnoremap j I
+nnoremap <space> za
+
+function! CurrentHighlight()
+  let highlightGroup = synIDattr(synID(line("."), col("."), 1), "name")
+  let transparentGroup = synIDattr(synID(line("."), col("."), 0), "name")
+  let translatedGroup = synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")
+
+  return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
+endfunction
+
+nnoremap <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
 nnoremap <f8> :set hlsearch!<cr>
 nnoremap <f9> :b #<cr>
-nnoremap <space> za
 nnoremap <f12> :grep -ir<space>
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>
-nnoremap <silent> <leader>f :CtrlP<cr>
-nnoremap <leader>s /\v
-nnoremap <leader>S ?\v
+
+nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
 vnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
-cnoremap <expr> @ getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-nnoremap k A
-nnoremap j I
-nnoremap <leader><home> ^
 nnoremap <leader>m zz
 nnoremap <leader>t zt
+nnoremap <leader>c :botright cwindow<cr>
+
+noremap <leader>s /
+noremap <leader>S ?
+noremap <leader><home> ^
+
+cnoremap <expr> @ getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
 " visual stuff
 
-set listchars=tab:= ,trail:-,extends:>,precedes:<,nbsp:+
+set listchars=tab:  ,trail:+,extends:>,precedes:<,nbsp:+
+set fillchars=vert: 
 
 autocmd BufWinEnter * if &modifiable | :set list | else | :set nolist | endif
-set fillchars=vert: 
+
 hi cursorline cterm=none ctermbg=0
 hi tabline cterm=none
 hi todo ctermbg=8 ctermfg=4
@@ -71,13 +99,16 @@ hi difftext ctermbg=5 ctermfg=15
 hi folded ctermbg=0 cterm=bold
 hi foldcolumn ctermbg=0 cterm=bold
 
-" load plugins
+" plugins
 
 call pathogen#infect()
 
-" plugin configuration
-
-hi ctrlpmode1 ctermbg=0 ctermfg=15
-hi ctrlpmode2 ctermbg=0 ctermfg=15
-hi ctrlpstats ctermbg=0 ctermfg=15
+hi ctrlpmode1 ctermbg=7 ctermfg=0
+hi ctrlpmode2 ctermbg=7 ctermfg=0
+hi ctrlpstats ctermbg=7 ctermfg=0
 hi ctrlpmatch ctermbg=3 ctermfg=0
+
+let g:ctrlp_match_window = 'min:1,max:20'
+let g:ctrlp_lazy_update = 1
+
+let g:splice_initial_diff_grid=1
