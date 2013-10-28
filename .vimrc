@@ -70,6 +70,8 @@ vnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
 nnoremap <leader>m zz
 nnoremap <leader>t zt
 nnoremap <leader>c :botright cwindow<cr>
+nnoremap <leader>n :cnext<cr>
+nnoremap <leader>N :cprevious<cr>
 
 noremap <leader>s /
 noremap <leader>S ?
@@ -109,6 +111,6 @@ hi ctrlpstats ctermbg=7 ctermfg=0
 hi ctrlpmatch ctermbg=3 ctermfg=0
 
 let g:ctrlp_match_window = 'min:1,max:20'
-let g:ctrlp_lazy_update = 1
+let g:ctrlp_lazy_update = 100
 
 let g:splice_initial_diff_grid=1
