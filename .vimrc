@@ -1,7 +1,7 @@
 " basics
 
-set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
+set backupdir=~/.vim/tmp
 
 set nowrap
 set hidden
@@ -16,7 +16,7 @@ set laststatus=2
 set shortmess+=I
 set wildmode=longest,list
 
-set mouse=ar
+set mouse=a
 set clipboard=unnamedplus
 
 set ttimeout
@@ -42,11 +42,6 @@ let g:loaded_matchparen=1
 let mapleader=","
 let maplocalleader=";"
 
-nnoremap Y y$
-nnoremap k A
-nnoremap j I
-nnoremap <space> za
-
 function! CurrentHighlight()
   let highlightGroup = synIDattr(synID(line("."), col("."), 1), "name")
   let transparentGroup = synIDattr(synID(line("."), col("."), 0), "name")
@@ -55,26 +50,54 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
+function! GrepFind()
+  let searchPattern = input('Search pattern: ')
+  if empty(searchPattern) | return | endif
+
+  let startingDirectory = input('Starting directory: ', '', 'file')
+  if empty(startingDirectory) | return | endif
+
+  let pathPattern = input('Path pattern: ')
+
+  if empty(pathPattern)
+    execute 'grep -Eir ' .
+      \ shellescape(searchPattern) . ' ' .
+      \ fnameescape(startingDirectory)
+  else
+    execute 'grep -Ei ' .
+      \ shellescape(searchPattern) . ' `find ' .
+      \ fnameescape(startingDirectory) . ' -type f -ipath ' .
+      \ shellescape(pathPattern) . '`'
+  endif
+endfunction
+
+nnoremap Y y$
+nnoremap k A
+nnoremap j I
+nnoremap <space> za
+
 nnoremap <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
 nnoremap <f8> :set hlsearch!<cr>
 nnoremap <f9> :b #<cr>
-nnoremap <f12> :grep -ir<space>
+nnoremap <f12> :call GrepFind()<cr>
 
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
-vnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
+xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
 nnoremap <leader>m zz
 nnoremap <leader>t zt
 nnoremap <leader>c :botright cwindow<cr>
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>N :cprevious<cr>
+xnoremap <leader>p "0p
+nnoremap <leader>g :g:\v:<left>
 
-noremap <leader>s /
-noremap <leader>S ?
+noremap <leader>s /\V
+noremap <leader>S ?\V
 noremap <leader><home> ^
 
 cnoremap <expr> @ getcmdtype() == ':' ? expand('%:h').'/' : '@'
