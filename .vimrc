@@ -8,9 +8,6 @@ set hidden
 set history=1000
 
 set autoindent
-set expandtab
-set shiftwidth=2
-set softtabstop=2
 
 set laststatus=2
 set shortmess+=I
@@ -22,7 +19,7 @@ set clipboard=unnamedplus
 set ttimeout
 set ttimeoutlen=100
 
-set incsearch
+" set incsearch
 set ignorecase
 
 set foldmethod=indent
@@ -36,6 +33,8 @@ autocmd BufEnter * :syntax sync fromstart
 runtime! macros/matchit.vim
 
 let g:loaded_matchparen=1
+
+set runtimepath+=/usr/lib/go/misc/vim
 
 " keyboard mappings
 
@@ -84,8 +83,8 @@ nnoremap <f8> :set hlsearch!<cr>
 nnoremap <f9> :b #<cr>
 nnoremap <f12> :call GrepFind()<cr>
 
-nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>f :CtrlP<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
 xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
 nnoremap <leader>m zz
@@ -93,12 +92,12 @@ nnoremap <leader>t zt
 nnoremap <leader>c :botright cwindow<cr>
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>N :cprevious<cr>
-xnoremap <leader>p "0p
 nnoremap <leader>g :g:\v:<left>
 
 noremap <leader>s /\V
 noremap <leader>S ?\V
 noremap <leader><home> ^
+noremap <leader>p "0p
 
 cnoremap <expr> @ getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
