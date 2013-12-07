@@ -7,11 +7,16 @@ set nowrap
 set hidden
 set history=1000
 
-set autoindent
+set fileformats+=mac
+set nrformats-=octal
 
 set laststatus=2
 set shortmess+=I
 set wildmode=longest,list
+
+set autoindent
+set smarttab
+set shiftround
 
 set mouse=a
 set clipboard=unnamedplus
@@ -19,13 +24,13 @@ set clipboard=unnamedplus
 set ttimeout
 set ttimeoutlen=100
 
-" set incsearch
 set ignorecase
 
 set foldmethod=indent
 set foldlevel=1000
 
 set iskeyword+=-
+set complete-=i
 
 filetype plugin on
 autocmd BufEnter * :syntax sync fromstart
