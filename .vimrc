@@ -34,8 +34,6 @@ runtime! macros/matchit.vim
 
 let g:loaded_matchparen=1
 
-set runtimepath+=/usr/lib/go/misc/vim
-
 " keyboard mappings
 
 let mapleader=","
