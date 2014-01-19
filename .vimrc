@@ -6,6 +6,7 @@ set backupdir=~/.vim/tmp
 set nowrap
 set hidden
 set history=1000
+set ignorecase
 
 set fileformats+=mac
 set nrformats-=octal
@@ -17,14 +18,14 @@ set wildmode=longest,list
 set autoindent
 set smarttab
 set shiftround
+set shiftwidth=4
+set tabstop=4
 
 set mouse=a
 set clipboard=unnamedplus
 
 set ttimeout
 set ttimeoutlen=100
-
-set ignorecase
 
 set foldmethod=indent
 set foldlevel=1000
