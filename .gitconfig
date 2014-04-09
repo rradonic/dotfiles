@@ -2,14 +2,14 @@
 	name = Ranko Radonić
 	email = ranko.radonic@gmx.com
 [color]
-	diff = auto
+	ui = auto
 [diff]
 	tool = vimdiff
-[merge]
-	tool = splice
-[mergetool "splice"]
-	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'syntax off' -c 'SpliceInit'"
-	trustExitCode = true
+; [merge]
+; 	tool = splice
+; [mergetool "splice"]
+; 	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'syntax off' -c 'SpliceInit'"
+; 	trustExitCode = true
 [mergetool]
 	keepBackup = false
 [push]
