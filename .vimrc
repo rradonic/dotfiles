@@ -4,10 +4,12 @@ set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
 
 set nowrap
-set nowrapscan
 set hidden
 set history=1000
 set ignorecase
+
+set nowrapscan
+set incsearch
 
 set fileformats+=mac
 set nrformats-=octal
@@ -42,16 +44,10 @@ set synmaxcol=0
 runtime! macros/matchit.vim
 
 let g:loaded_matchparen=1
+let g:netrw_list_hide= '\./$,\.\./$'
+let g:netrw_banner=0
 
 " keyboard mappings
-
-let mapleader=","
-let maplocalleader=";"
-
-nnoremap Y y$
-nnoremap j I
-nnoremap k A
-nnoremap <space> za
 
 function! CurrentHighlight()
   let highlightGroup = synIDattr(synID(line("."), col("."), 1), "name")
@@ -82,6 +78,13 @@ function! GrepFind()
   endif
 endfunction
 
+let mapleader=","
+let maplocalleader=";"
+
+nnoremap Y y$
+" nnoremap j I
+" nnoremap k A
+
 nnoremap <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
 nnoremap <f4> q
@@ -90,7 +93,7 @@ nnoremap <f8> :set hlsearch!<cr>
 nnoremap <f9> :b #<cr>
 nnoremap <f12> :call GrepFind()<cr>
 
-nnoremap <leader>a :CtrlP<cr>
+nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
 xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
@@ -101,10 +104,8 @@ nnoremap <leader>n :cnext<cr>
 nnoremap <leader>N :cprevious<cr>
 nnoremap <leader>g :g:\v:<left>
 
-noremap <leader>s /\V
-noremap <leader>S ?\V
 noremap <leader><home> ^
-noremap <leader>p "0p
+" noremap p "0p
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
@@ -126,21 +127,27 @@ endfunction
 autocmd BufWinEnter * :call BufWinEnterCallback()
 autocmd BufWinEnter * :call BufWinEnterCallback()
 
-hi cursorline cterm=none ctermbg=0
+hi cursorline cterm=none
 hi tabline cterm=none
 hi todo ctermbg=8 ctermfg=4
+hi colorcolumn ctermbg=0
+hi search ctermbg=5 ctermfg=7
+" hi incsearch cterm=none ctermbg=5 ctermfg=7
+
 hi visual ctermbg=0 cterm=none
 hi visualnos ctermbg=0 cterm=none
+
 hi statusline ctermbg=7 ctermfg=0 cterm=none
 hi statuslinenc ctermbg=7 ctermfg=0 cterm=bold
 hi vertsplit ctermfg=7
+
 hi diffadd ctermbg=6 ctermfg=15
 hi diffchange ctermbg=0 ctermfg=15
 hi diffdelete ctermbg=8 ctermfg=0
 hi difftext ctermbg=5 ctermfg=15
-hi folded ctermbg=8
+
+hi folded ctermbg=0
 hi foldcolumn ctermbg=0
-hi colorcolumn ctermbg=0
 
 " plugins
 
@@ -149,6 +156,5 @@ call pathogen#infect()
 hi ctrlpmode1 ctermbg=7 ctermfg=0
 hi ctrlpmode2 ctermbg=7 ctermfg=0
 hi ctrlpstats ctermbg=7 ctermfg=0
-hi ctrlpmatch ctermbg=3 ctermfg=0
 
-let g:ctrlp_lazy_update = 100
+let g:ctrlp_lazy_update = 1
