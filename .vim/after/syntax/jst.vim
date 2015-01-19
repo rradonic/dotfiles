@@ -1,6 +1,4 @@
-exec 'source $HOME/.vim/bundle/html5-syntax.vim/syntax/html/html5.vim'
-exec 'source $HOME/.vim/bundle/vim-css3-syntax/after/syntax/html.vim'
-exec 'source $HOME/.vim/after/syntax/javascript.vim'
+source $HOME/.vim/after/syntax/javascript.vim
 
 setlocal expandtab shiftwidth=2 tabstop=2
 
