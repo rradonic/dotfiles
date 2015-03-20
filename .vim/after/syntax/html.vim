@@ -1,6 +1,6 @@
 setlocal expandtab shiftwidth=2 tabstop=2
 
-syntax clear htmlbold
-syntax clear htmllink
-syntax clear htmlitalic
-syntax clear htmlunderline
+silent! syntax clear htmlbold
+silent! syntax clear htmllink
+silent! syntax clear htmlitalic
+silent! syntax clear htmlunderline
