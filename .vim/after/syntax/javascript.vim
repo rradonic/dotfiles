@@ -8,6 +8,7 @@ syntax clear jsparenserrc
 syntax clear jsglobalobjects
 syntax clear jsbuiltins
 syntax clear jshtmlevents
+syntax clear jsfuncname
 
 syntax clear jsoperator
 syntax keyword jsoperator delete instanceof typeof void new in

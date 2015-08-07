@@ -4,6 +4,18 @@ call pathogen#infect()
 
 source $HOME/.vim/bundle/vim-sensible/plugin/sensible.vim
 
+if exists('g:big_file')
+  syntax off
+else
+  augroup syntax_group
+    autocmd!
+    autocmd BufEnter * :syntax sync fromstart
+  augroup END
+
+  set synmaxcol=0
+  set maxmempattern=100000
+endif
+
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
 
@@ -40,9 +52,6 @@ set cryptmethod=blowfish
 
 set listchars+=tab:  
 
-autocmd BufEnter * :syntax sync fromstart
-set synmaxcol=0
-
 set regexpengine=1
 
 let g:loaded_matchparen=1
@@ -61,6 +70,22 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
+function! GrepFind()
+  let searchPattern = input('Search pattern: ')
+  if empty(searchPattern) | return | endif
+
+  let startingDirectory = input('Starting directory: ', '', 'file')
+  if empty(startingDirectory) | return | endif
+
+  let pathPattern = input('Path pattern: ')
+  if empty(startingDirectory) | return | endif
+
+  execute 'grep -Ei ' .
+    \ shellescape(searchPattern) . ' `find ' .
+    \ fnameescape(startingDirectory) . ' -type f -ipath ' .
+    \ shellescape(pathPattern) . '`'
+endfunction
+
 let mapleader = "\<space>"
 let maplocalleader = "\<backspace>"
 
@@ -70,9 +95,9 @@ nnoremap <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
-nnoremap <f9> :b #<cr>
+nnoremap <f9> <c-^>
 nnoremap <f8> :set hlsearch!<cr>
-nnoremap <f12> :grep -ir 
+nnoremap <f12> :call GrepFind()<cr>
 
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
@@ -81,7 +106,9 @@ xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
 nnoremap <leader>m zz
 nnoremap <leader>t zt
 nnoremap <leader>c :botright cwindow<cr>
+nnoremap <leader>C :cclose<cr>
 nnoremap <leader>l :botright lwindow<cr>
+nnoremap <leader>L :botright lclose<cr>
 nnoremap <leader>g :g:\v:<left>
 
 nnoremap <leader>f :set foldlevel=
@@ -94,13 +121,16 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
 set fillchars=vert: ,diff: 
 
-function! BufEnterCallback()
+function! VisibilityCallback()
   setlocal list
   setlocal conceallevel=0
   " setlocal indentexpr=
 endfunction
 
-autocmd BufEnter * :call BufEnterCallback()
+augroup visibility_group
+  autocmd!
+  autocmd BufEnter * :call VisibilityCallback()
+augroup END
 
 " regular colors
 
@@ -127,6 +157,9 @@ hi foldcolumn ctermbg=0
 
 hi todo ctermbg=NONE ctermfg=4
 
+hi linenr ctermfg=0 cterm=bold
+hi cursorlinenr ctermfg=0 cterm=bold
+
 " plugins
 
 hi ctrlpmode1 ctermfg=none ctermbg=0
@@ -136,24 +169,16 @@ hi ctrlpstats ctermfg=none ctermbg=0
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_lazy_update = 1
 
-hi signcolumn ctermbg=0
-
-hi syntasticwarningsign ctermbg=0 ctermfg=3
-hi syntasticstylewarningsign ctermbg=0 ctermfg=3
-hi syntasticerrorsign ctermbg=0 ctermfg=1
-hi syntasticstyleerrorsign ctermbg=0 ctermfg=1
 
 let g:syntastic_enable_signs = 0
-let g:syntastic_enable_highlighting = 0
+let g:syntastic_enable_highlighting = 1
 let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" hi warningmsg ctermbg=5 ctermfg=7
 
-hi warningmsg ctermbg=0 ctermfg=1
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-set statusline=%<%f\ %h%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P
-
-" set statusline+=%{fugitive#statusline()}
+" set statusline=%<%f\ %h%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%-14.(%l,%c%V%)\ %P
