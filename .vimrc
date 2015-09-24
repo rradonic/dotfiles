@@ -1,20 +1,24 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basics
 
 call pathogen#infect()
 
 source $HOME/.vim/bundle/vim-sensible/plugin/sensible.vim
 
-if exists('g:big_file')
-  syntax off
-else
-  augroup syntax_group
-    autocmd!
-    autocmd BufEnter * :syntax sync fromstart
-  augroup END
+function! SetSyntax()
+  if line2byte(line("$") + 1) > 1000000
+    syntax clear
+  else
+    syntax sync fromstart
+    set synmaxcol=0
+    set maxmempattern=100000
+  endif
+endfunction
 
-  set synmaxcol=0
-  set maxmempattern=100000
-endif
+augroup syntax_group
+  autocmd!
+  autocmd BufEnter * :call SetSyntax()
+augroup END
 
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
@@ -57,6 +61,7 @@ set regexpengine=1
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
 function! CurrentHighlight()
@@ -77,7 +82,10 @@ function! GrepFind()
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'git ls-files -z | grep -z ' . shellescape(pathPattern) . ' | xargs -0 grep -Ein '. shellescape(searchPattern)
+  let cmd = 'git ls-files -z | grep -z ' .
+    \ shellescape(pathPattern) .
+    \ ' | xargs -0 grep -Ein '.
+    \ shellescape(searchPattern)
 
   cexpr system(cmd)
 endfunction
@@ -92,7 +100,6 @@ nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
 nnoremap <f9> <c-^>
-nnoremap <f8> :set hlsearch!<cr>
 nnoremap <f12> :call GrepFind()<cr>
 
 nnoremap <leader>p :CtrlP<cr>
@@ -106,13 +113,13 @@ nnoremap <leader>C :cclose<cr>
 nnoremap <leader>l :botright lwindow<cr>
 nnoremap <leader>L :botright lclose<cr>
 nnoremap <leader>g :g:\v:<left>
+nnoremap <leader>h :set hlsearch!<cr>
 
 nnoremap <leader>f :set foldlevel=
 
-" noremap <leader><home> ^
-
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
 
 set fillchars=vert: ,diff: 
@@ -128,19 +135,13 @@ augroup visibility_group
   autocmd BufEnter * :call VisibilityCallback()
 augroup END
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugins
+
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_lazy_update = 1
-
 
 let g:syntastic_enable_signs = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
-
-" hi warningmsg ctermbg=5 ctermfg=7
-
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" set statusline=%<%f\ %h%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%-14.(%l,%c%V%)\ %P
