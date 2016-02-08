@@ -1,7 +1,8 @@
 URxvt.perl-ext:
 URxvt.perl-ext-common:
 
-URxvt.title: wfp
+URxvt.geometry: 80x24
+
 URxvt.saveLines: 0
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -9,20 +10,23 @@ URxvt.scrollBar: false
 URxvt.pointerBlank: true
 URxvt.pointerBlankDelay: 987654321
 
+/* URxvt.jumpScroll: false */
+/* URxvt.skipScroll: true */
+
 /* URxvt.font: 10x20 */
 /* URxvt.boldFont: 10x20 */
 /* URxvt.italicFont: 10x20 */
 /* URxvt.boldItalicFont: 10x20 */
 
-/* URxvt.font: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
-/* URxvt.boldFont: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
-/* URxvt.italicFont: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
-/* URxvt.boldItalicFont: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
+/* URxvt.font: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
+/* URxvt.boldFont: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
+/* URxvt.italicFont: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
+/* URxvt.boldItalicFont: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
 
-URxvt.font: xft:UbuntuMono:size=13:style=Regular
-URxvt.boldFont: xft:UbuntuMono:size=13:style=Regular
-URxvt.italicFont: xft:UbuntuMono:size=13:style=Regular
-URxvt.boldItalicFont: xft:UbuntuMono:size=13:style=Regular
+URxvt.font: xft:UbuntuMono:size=15:style=Regular
+URxvt.boldFont: xft:UbuntuMono:size=15:style=Regular
+URxvt.italicFont: xft:UbuntuMono:size=15:style=Regular
+URxvt.boldItalicFont: xft:UbuntuMono:size=15:style=Regular
 
 URxvt.lineSpace: 0
 URxvt.letterSpace: -1

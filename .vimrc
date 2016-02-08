@@ -32,6 +32,11 @@ set nowrapscan
 set scrolloff=0
 set sidescrolloff=1
 
+augroup scroll_group
+  autocmd!
+  autocmd BufEnter * :set scroll=5
+augroup END
+
 set shortmess+=I
 set wildmode=longest,list
 
@@ -61,6 +66,8 @@ set regexpengine=1
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
+set lazyredraw
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
@@ -82,9 +89,9 @@ function! GrepFind()
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'git ls-files -z | grep -z ' .
+  let cmd = 'git ls-files | grep ' .
     \ shellescape(pathPattern) .
-    \ ' | xargs -0 grep -Ein '.
+    \ ' | xargs grep -Ein '.
     \ shellescape(searchPattern)
 
   cexpr system(cmd)
@@ -95,26 +102,27 @@ let maplocalleader = "\<backspace>"
 
 nnoremap Y y$
 
-nnoremap <f2> :echo CurrentHighlight()<cr>
-nnoremap <f3> qq
-nnoremap <f4> q
-nnoremap <f5> @q
-nnoremap <f9> <c-^>
-nnoremap <f12> :call GrepFind()<cr>
+nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
+nnoremap <silent> <f3> qq
+nnoremap <silent> <f4> q
+nnoremap <silent> <f5> @q
+nnoremap <silent> <f9> <c-^>
+nnoremap <silent> <f12> :call GrepFind()<cr>
 
-nnoremap <leader>p :CtrlP<cr>
-nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> <leader>p :CtrlP<cr>
+nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> <leader>m zz
+nnoremap <silent> <leader>t zt
+nnoremap <silent> <leader>c :botright cwindow<cr>
+nnoremap <silent> <leader>C :cclose<cr>
+nnoremap <silent> <leader>l :botright lwindow<cr>
+nnoremap <silent> <leader>L :botright lclose<cr>
+nnoremap <silent> <leader>h :set hlsearch!<cr>
+nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
+
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
 xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
-nnoremap <leader>m zz
-nnoremap <leader>t zt
-nnoremap <leader>c :botright cwindow<cr>
-nnoremap <leader>C :cclose<cr>
-nnoremap <leader>l :botright lwindow<cr>
-nnoremap <leader>L :botright lclose<cr>
 nnoremap <leader>g :g:\v:<left>
-nnoremap <leader>h :set hlsearch!<cr>
-
 nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
@@ -138,6 +146,8 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
+let g:ctrlp_max_files = 0
+let g:ctrlp_user_command = 'git ls-files %s'
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_lazy_update = 1
 
