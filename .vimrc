@@ -6,7 +6,7 @@ call pathogen#infect()
 source $HOME/.vim/bundle/vim-sensible/plugin/sensible.vim
 
 function! SetSyntax()
-  if line2byte(line("$") + 1) > 1000000
+  if line2byte(line("$") + 1) > 100000
     syntax clear
   else
     syntax sync fromstart
@@ -17,11 +17,14 @@ endfunction
 
 augroup syntax_group
   autocmd!
-  autocmd BufEnter * :call SetSyntax()
+  autocmd FileType * :call SetSyntax()
 augroup END
 
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
+
+set exrc
+set secure
 
 set noshowcmd
 set nowrap
@@ -31,11 +34,6 @@ set nowrapscan
 
 set scrolloff=0
 set sidescrolloff=1
-
-augroup scroll_group
-  autocmd!
-  autocmd BufEnter * :set scroll=5
-augroup END
 
 set shortmess+=I
 set wildmode=longest,list
@@ -54,7 +52,6 @@ set foldmethod=indent
 set foldlevel=1000
 set diffopt=filler,foldcolumn:0,context:2147483647
 
-set iskeyword+=-
 set matchpairs+=<:>
 
 set cryptmethod=blowfish
@@ -133,14 +130,22 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 set fillchars=vert: ,diff: 
 
 function! VisibilityCallback()
-  setlocal list
-  setlocal conceallevel=0
-  " setlocal indentexpr=
+  set list
+  set conceallevel=0
+endfunction
+
+function! ConflictMarkerCallback()
+  syntax match conflictMarker /<<<<<<<.*/
+  syntax match conflictMarker /=======/
+  syntax match conflictMarker />>>>>>>.*/
+
+  highlight link conflictMarker error
 endfunction
 
 augroup visibility_group
   autocmd!
-  autocmd BufEnter * :call VisibilityCallback()
+  autocmd FileType * :call VisibilityCallback()
+  autocmd FileType * :call ConflictMarkerCallback()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -155,3 +160,6 @@ let g:syntastic_enable_signs = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
+"
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wall -Wextra -Werror -pedantic'
