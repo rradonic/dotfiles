@@ -68,16 +68,16 @@ set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
-function! CurrentHighlight()
-  let highlightGroup =
-    \ synIDattr(synID(line("."), col("."), 1), "name")
-  let transparentGroup =
-    \ synIDattr(synID(line("."), col("."), 0), "name")
-  let translatedGroup =
-    \ synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")
+" function! CurrentHighlight()
+"   let highlightGroup =
+"     \ synIDattr(synID(line("."), col("."), 1), "name")
+"   let transparentGroup =
+"     \ synIDattr(synID(line("."), col("."), 0), "name")
+"   let translatedGroup =
+"     \ synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")
 
-  return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
-endfunction
+"   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
+" endfunction
 
 function! GrepFind()
   let searchPattern = input('Search pattern: ')

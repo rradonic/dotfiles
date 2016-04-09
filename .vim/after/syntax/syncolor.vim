@@ -4,14 +4,14 @@ hi cursorline cterm=none
 hi tabline cterm=none
 
 hi colorcolumn ctermbg=0
-hi search ctermbg=3 ctermfg=0
+hi search ctermbg=3 ctermfg=7 cterm=bold
 
 hi visual ctermbg=0 cterm=none
 hi visualnos ctermbg=0 cterm=none
 
-hi statusline ctermbg=0 ctermfg=none cterm=none
-hi statuslinenc ctermbg=0 ctermfg=0 cterm=bold
-hi vertsplit ctermfg=0
+hi statusline ctermbg=none ctermfg=none cterm=italic
+hi statuslinenc ctermbg=none ctermfg=none cterm=italic,standout
+hi vertsplit ctermfg=none
 
 hi diffadd ctermbg=2 ctermfg=7
 hi diffchange ctermbg=0 ctermfg=7
