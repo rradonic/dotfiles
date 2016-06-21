@@ -86,7 +86,7 @@ function! GrepFind()
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'git ls-files | grep ' .
+  let cmd = 'find . -type f | grep -v ''/tmp/\|/.git/\|/logs\?/'' | grep ' .
     \ shellescape(pathPattern) .
     \ ' | xargs grep -Ein '.
     \ shellescape(searchPattern)
@@ -99,7 +99,7 @@ let maplocalleader = "\<backspace>"
 
 nnoremap Y y$
 
-nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
+" nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
 nnoremap <silent> <f3> qq
 nnoremap <silent> <f4> q
 nnoremap <silent> <f5> @q
@@ -117,9 +117,11 @@ nnoremap <silent> <leader>L :botright lclose<cr>
 nnoremap <silent> <leader>h :set hlsearch!<cr>
 nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
 
+nnoremap <leader>s /\v
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
 xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
 nnoremap <leader>g :g:\v:<left>
+nnoremap <leader>v :v:\v:<left>
 nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
@@ -134,9 +136,9 @@ function! VisibilityCallback()
   set conceallevel=0
 endfunction
 
-function! ConflictMarkerCallback()
+function! HighlightConflictMarkers()
   syntax match conflictMarker /<<<<<<<.*/
-  syntax match conflictMarker /=======/
+  syntax match conflictMarker /=======.*/
   syntax match conflictMarker />>>>>>>.*/
 
   highlight link conflictMarker error
@@ -145,14 +147,13 @@ endfunction
 augroup visibility_group
   autocmd!
   autocmd FileType * :call VisibilityCallback()
-  autocmd FileType * :call ConflictMarkerCallback()
+  autocmd FileType * :call HighlightConflictMarkers()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
 let g:ctrlp_max_files = 0
-let g:ctrlp_user_command = 'git ls-files %s'
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_lazy_update = 1
 
