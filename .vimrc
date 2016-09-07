@@ -5,6 +5,8 @@ call pathogen#infect()
 
 source $HOME/.vim/bundle/vim-sensible/plugin/sensible.vim
 
+set t_Co=8
+
 function! SetSyntax()
   if line2byte(line("$") + 1) > 100000
     syntax clear
@@ -31,6 +33,7 @@ set nowrap
 set hidden
 set ignorecase
 set nowrapscan
+set nohlsearch
 
 set scrolloff=0
 set sidescrolloff=1
@@ -68,16 +71,16 @@ set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
-" function! CurrentHighlight()
-"   let highlightGroup =
-"     \ synIDattr(synID(line("."), col("."), 1), "name")
-"   let transparentGroup =
-"     \ synIDattr(synID(line("."), col("."), 0), "name")
-"   let translatedGroup =
-"     \ synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")
+function! CurrentHighlight()
+  let highlightGroup =
+    \ synIDattr(synID(line("."), col("."), 1), "name")
+  let transparentGroup =
+    \ synIDattr(synID(line("."), col("."), 0), "name")
+  let translatedGroup =
+    \ synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")
 
-"   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
-" endfunction
+  return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
+endfunction
 
 function! GrepFind()
   let searchPattern = input('Search pattern: ')
@@ -99,7 +102,7 @@ let maplocalleader = "\<backspace>"
 
 nnoremap Y y$
 
-" nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
+nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
 nnoremap <silent> <f3> qq
 nnoremap <silent> <f4> q
 nnoremap <silent> <f5> @q
