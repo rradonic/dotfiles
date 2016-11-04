@@ -1,0 +1,1 @@
+silent! syntax clear markdownlinktext
