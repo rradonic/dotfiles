@@ -89,7 +89,7 @@ function! GrepFind()
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'find . -type f | grep -v ''/tmp/\|/.git/\|/logs\?/'' | grep ' .
+  let cmd = 'find . -type f | grep -v ''/.git/\|/logs\?/\|/tmp/'' | grep ' .
     \ shellescape(pathPattern) .
     \ ' | xargs grep -Ein '.
     \ shellescape(searchPattern)
@@ -156,6 +156,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
+let g:ctrlp_custom_ignore = '\v\.git\/|logs?\/|tmp\/'
 let g:ctrlp_max_files = 0
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_lazy_update = 1
