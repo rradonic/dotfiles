@@ -18,16 +18,20 @@ hi diffchange ctermbg=0 ctermfg=7
 hi diffdelete ctermbg=1 ctermfg=0
 hi difftext ctermbg=4 ctermfg=7
 
-hi folded ctermbg=none ctermfg=0
-hi foldcolumn ctermbg=none ctermfg=0 cterm=none
+hi folded ctermbg=0 ctermfg=0 cterm=bold
+hi foldcolumn ctermbg=0 ctermfg=0 cterm=none
 
-hi todo ctermbg=none ctermfg=4
+" hi todo ctermbg=none ctermfg=4
 
-" hi linenr ctermfg=0 cterm=bold
-" hi cursorlinenr ctermfg=0 cterm=bold
+hi linenr ctermfg=0 ctermbg=0 cterm=bold
+hi cursorlinenr ctermfg=0 cterm=bold
 
-hi spellbad ctermbg=9 ctermfg=7
+hi spellbad ctermbg=1 ctermfg=7
 hi spellcap ctermbg=4 ctermfg=7
+
+hi signcolumn ctermbg=0
+
+hi nontext ctermbg=0
 
 " plugins
 

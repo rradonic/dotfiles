@@ -35,8 +35,8 @@ set ignorecase
 set nowrapscan
 set nohlsearch
 
-set scrolloff=0
-set sidescrolloff=1
+" set scrolloff=5
+" set sidescrolloff=5
 
 set shortmess+=I
 set wildmode=longest,list
@@ -66,7 +66,9 @@ set regexpengine=1
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
-set lazyredraw
+set number
+
+" set lazyredraw
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
@@ -89,7 +91,7 @@ function! GrepFind()
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'find . -type f | grep -v ''/.git/\|/logs\?/\|/tmp/'' | grep ' .
+  let cmd = 'find . -type f | grep -v ''/.git/\|/logs\?/\|/tmp/\|/coverage/'' | grep ' .
     \ shellescape(pathPattern) .
     \ ' | xargs grep -Ein '.
     \ shellescape(searchPattern)
@@ -109,8 +111,6 @@ nnoremap <silent> <f5> @q
 nnoremap <silent> <f9> <c-^>
 nnoremap <silent> <f12> :call GrepFind()<cr>
 
-nnoremap <silent> <leader>p :CtrlP<cr>
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 nnoremap <silent> <leader>m zz
 nnoremap <silent> <leader>t zt
 nnoremap <silent> <leader>c :botright cwindow<cr>
@@ -118,7 +118,7 @@ nnoremap <silent> <leader>C :cclose<cr>
 nnoremap <silent> <leader>l :botright lwindow<cr>
 nnoremap <silent> <leader>L :botright lclose<cr>
 nnoremap <silent> <leader>h :set hlsearch!<cr>
-nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
+nnoremap <silent> <leader>. :let @+ = expand("%")<cr>
 
 nnoremap <leader>s /\v
 nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
@@ -128,6 +128,9 @@ nnoremap <leader>v :v:\v:<left>
 nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
+
+nnoremap <silent> <leader>p :CtrlP<cr>
+nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
@@ -147,24 +150,32 @@ function! HighlightConflictMarkers()
   highlight link conflictMarker error
 endfunction
 
+function! ShowSignColumn()
+  " sign define dummy
+  " execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+endfunction
+
 augroup visibility_group
   autocmd!
   autocmd FileType * :call VisibilityCallback()
   autocmd FileType * :call HighlightConflictMarkers()
+  " autocmd FileType * :call ShowSignColumn()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
-let g:ctrlp_custom_ignore = '\v\.git\/|logs?\/|tmp\/'
+let g:ctrlp_custom_ignore = '\v\.git\/|logs?\/|tmp\/|coverage\/'
 let g:ctrlp_max_files = 0
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_lazy_update = 1
 
-let g:syntastic_enable_signs = 0
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-"
+    let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    " let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_enable_signs = 0
+    let g:syntastic_enable_highlighting = 1
+
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wall -Wextra -Werror -pedantic'
