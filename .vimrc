@@ -141,6 +141,10 @@ function! VisibilityCallback()
 endfunction
 
 function! HighlightConflictMarkers()
+  if &ft ==# 'help'
+    return
+  end
+
   syntax match conflictMarker /<<<<<<<.*/
   syntax match conflictMarker /=======.*/
   syntax match conflictMarker />>>>>>>.*/
