@@ -18,23 +18,21 @@ hi diffchange ctermbg=0 ctermfg=7
 hi diffdelete ctermbg=1 ctermfg=0
 hi difftext ctermbg=4 ctermfg=7
 
-hi folded ctermbg=0 ctermfg=0 cterm=bold
-hi foldcolumn ctermbg=0 ctermfg=0 cterm=none
+hi folded ctermbg=none ctermfg=0 cterm=bold
+hi foldcolumn ctermbg=none ctermfg=0 cterm=none
 
 " hi todo ctermbg=none ctermfg=4
 
-hi linenr ctermfg=0 ctermbg=0 cterm=bold
-hi cursorlinenr ctermfg=0 cterm=bold
+hi linenr ctermfg=0 ctermbg=none cterm=bold
+hi cursorlinenr ctermfg=0 ctermbg=none cterm=bold
 
 hi spellbad ctermbg=1 ctermfg=7
 hi spellcap ctermbg=4 ctermfg=7
 
 hi signcolumn ctermbg=0
 
-hi nontext ctermbg=0
-
 " plugins
 
-hi ctrlpmode1 ctermfg=none ctermbg=0
-hi ctrlpmode2 ctermfg=none ctermbg=0
-hi ctrlpstats ctermfg=none ctermbg=0
+hi ctrlpmode1 ctermfg=none cterm=none ctermbg=8
+hi ctrlpmode2 ctermfg=none cterm=none ctermbg=8
+hi ctrlpstats ctermfg=none cterm=none ctermbg=8

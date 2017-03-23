@@ -5,3 +5,4 @@ function cs () {
 }
 
 alias vim=vimx
+alias gg="git status"

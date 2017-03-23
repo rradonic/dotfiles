@@ -66,8 +66,6 @@ set regexpengine=1
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
-set number
-
 " set lazyredraw
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,7 +89,7 @@ function! GrepFind()
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'find . -type f | grep -v ''/.git/\|/logs\?/\|/tmp/\|/coverage/'' | grep ' .
+  let cmd = 'git ls-files | grep ' .
     \ shellescape(pathPattern) .
     \ ' | xargs grep -Ein '.
     \ shellescape(searchPattern)
@@ -129,8 +127,8 @@ nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-nnoremap <silent> <leader>p :CtrlP<cr>
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> <leader>p :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '10'})<cr>
+nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
@@ -151,8 +149,8 @@ function! HighlightConflictMarkers()
 endfunction
 
 function! ShowSignColumn()
-  " sign define dummy
-  " execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+  sign define dummy
+  execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 endfunction
 
 augroup visibility_group
@@ -165,17 +163,22 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
-let g:ctrlp_custom_ignore = '\v\.git\/|logs?\/|tmp\/|coverage\/'
-let g:ctrlp_max_files = 0
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_lazy_update = 1
+" let g:ctrlp_custom_ignore = '\v\.git\/|logs?\/|tmp\/|coverage\/'
+" let g:ctrlp_max_files = 0
+" let g:ctrlp_working_path_mode = 'r'
+" let g:ctrlp_lazy_update = 1
 
-    let g:syntastic_always_populate_loc_list = 1
-    " let g:syntastic_auto_loc_list = 1
-    " let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_enable_signs = 0
-    let g:syntastic_enable_highlighting = 1
+    " let g:syntastic_always_populate_loc_list = 1
+    " " let g:syntastic_auto_loc_list = 1
+    " " let g:syntastic_check_on_open = 1
+    " let g:syntastic_check_on_wq = 0
+    " let g:syntastic_enable_signs = 0
+    " let g:syntastic_enable_highlighting = 1
 
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wall -Wextra -Werror -pedantic'
+" let g:syntastic_cpp_compiler = 'g++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wall -Wextra -Werror -pedantic'
+
+let g:ale_set_highlights = 0
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
