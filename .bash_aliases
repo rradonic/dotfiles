@@ -4,5 +4,5 @@ function cs () {
     cd "$@" && ll
 }
 
-alias vim=vimx
-alias gg="git status"
+# alias vim=vimx
+# alias gg="git status"

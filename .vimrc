@@ -97,8 +97,8 @@ function! GrepFind()
   cexpr system(cmd)
 endfunction
 
-let mapleader = "\<space>"
-let maplocalleader = "\<backspace>"
+" let mapleader = "\<space>"
+" let maplocalleader = "\<backspace>"
 
 nnoremap Y y$
 
@@ -129,6 +129,8 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
 nnoremap <silent> <leader>p :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '10'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
+
+nnoremap <backspace> :
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
