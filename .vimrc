@@ -41,8 +41,8 @@ set nohlsearch
 set shortmess+=I
 set wildmode=longest,list
 
-filetype indent off
-set shiftround
+" filetype indent off
+" set shiftround
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -68,6 +68,8 @@ let g:loaded_netrw=1
 
 " set lazyredraw
 
+let find_command = 'find . -type f -not -path ''*/.git/*'' -not -path ''*/log/*'' -not -path ''*/tmp/*'' -not -path ''*/coverage/*'''
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
@@ -82,14 +84,14 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
-function! GrepFind()
+function! GrepFind(find_command)
   let searchPattern = input('Search pattern: ')
   if empty(searchPattern) | return | endif
 
   let pathPattern = input('Path pattern: ')
   if empty(pathPattern) | return | endif
 
-  let cmd = 'git ls-files | grep ' .
+  let cmd = a:find_command . ' | grep ' .
     \ shellescape(pathPattern) .
     \ ' | xargs grep -Ein '.
     \ shellescape(searchPattern)
@@ -107,7 +109,7 @@ nnoremap <silent> <f3> qq
 nnoremap <silent> <f4> q
 nnoremap <silent> <f5> @q
 nnoremap <silent> <f9> <c-^>
-nnoremap <silent> <f12> :call GrepFind()<cr>
+nnoremap <silent> <f12> :call GrepFind(find_command)<cr>
 
 nnoremap <silent> <leader>m zz
 nnoremap <silent> <leader>t zt
@@ -127,7 +129,7 @@ nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-nnoremap <silent> <leader>p :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '10'})<cr>
+nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '10'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
 
 nnoremap <backspace> :
