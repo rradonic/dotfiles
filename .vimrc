@@ -2,6 +2,7 @@
 " basics
 
 call plug#begin('~/.vim/plugged')
+
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -12,7 +13,8 @@ Plug 'othree/html5.vim'
 Plug 'briancollins/vim-jst'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
