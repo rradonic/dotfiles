@@ -1,9 +1,21 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basics
 
-call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'jamessan/vim-gnupg'
+Plug 'w0rp/ale'
+Plug 'othree/html5.vim'
+Plug 'briancollins/vim-jst'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug '~/.fzf'
+call plug#end()
 
-source $HOME/.vim/bundle/vim-sensible/plugin/sensible.vim
+source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
 set t_Co=8
 
