@@ -34,6 +34,7 @@ set hidden
 set ignorecase
 set nowrapscan
 set nohlsearch
+set noincsearch
 
 " set scrolloff=5
 " set sidescrolloff=5
@@ -41,7 +42,7 @@ set nohlsearch
 set shortmess+=I
 set wildmode=longest,list
 
-" filetype indent off
+filetype indent off
 " set shiftround
 set expandtab
 set shiftwidth=2
@@ -89,7 +90,7 @@ function! GrepFind(find_command)
   if empty(searchPattern) | return | endif
 
   let pathPattern = input('Path pattern: ')
-  if empty(pathPattern) | return | endif
+  let pathPattern = '.*'
 
   let cmd = a:find_command . ' | grep ' .
     \ shellescape(pathPattern) .
@@ -102,6 +103,7 @@ endfunction
 " let mapleader = "\<space>"
 " let maplocalleader = "\<backspace>"
 
+nnoremap <backspace> :
 nnoremap Y y$
 
 nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
@@ -121,8 +123,8 @@ nnoremap <silent> <leader>h :set hlsearch!<cr>
 nnoremap <silent> <leader>. :let @+ = expand("%")<cr>
 
 nnoremap <leader>s /\v
-nnoremap <leader>r :%s:\v::gcI<left><left><left><left><left>
-xnoremap <leader>r :s:\v::gcI<left><left><left><left><left>
+nnoremap <leader>r :%s:\v:gcI<left><left><left><left>
+xnoremap <leader>r :s:\v:gcI<left><left><left><left>
 nnoremap <leader>g :g:\v:<left>
 nnoremap <leader>v :v:\v:<left>
 nnoremap <leader>f :set foldlevel=
@@ -132,7 +134,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '10'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
 
-nnoremap <backspace> :
+" nnoremap <silent> <leader>d :call append(line('.'), 'wfp')<cr><down>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
@@ -171,22 +173,8 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
-" let g:ctrlp_custom_ignore = '\v\.git\/|logs?\/|tmp\/|coverage\/'
-" let g:ctrlp_max_files = 0
-" let g:ctrlp_working_path_mode = 'r'
-" let g:ctrlp_lazy_update = 1
-
-    " let g:syntastic_always_populate_loc_list = 1
-    " " let g:syntastic_auto_loc_list = 1
-    " " let g:syntastic_check_on_open = 1
-    " let g:syntastic_check_on_wq = 0
-    " let g:syntastic_enable_signs = 0
-    " let g:syntastic_enable_highlighting = 1
-
-" let g:syntastic_cpp_compiler = 'g++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wall -Wextra -Werror -pedantic'
-
-let g:ale_set_highlights = 0
-let g:ale_sign_column_always = 1
+" let g:ale_set_highlights = 0
+let g:ale_set_signs = 0
+" let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
+" let g:ale_lint_on_save = 1

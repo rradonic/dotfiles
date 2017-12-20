@@ -10,28 +10,27 @@ URxvt.scrollBar: false
 URxvt.pointerBlank: true
 URxvt.pointerBlankDelay: 987654321
 
-/* URxvt.jumpScroll: false */
-/* URxvt.skipScroll: true */
+/* URxvt.jumpScroll: true */
+/* URxvt.skipScroll: false */
 
 /* URxvt.font: 10x20 */
 /* URxvt.boldFont: 10x20 */
 /* URxvt.italicFont: 10x20 */
 /* URxvt.boldItalicFont: 10x20 */
 
-/* URxvt.font: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
-/* URxvt.boldFont: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
-/* URxvt.italicFont: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
-/* URxvt.boldItalicFont: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-* */
+/* URxvt.font: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
+/* URxvt.boldFont: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
+/* URxvt.italicFont: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
+/* URxvt.boldItalicFont: -*-terminus-medium-*-*-*-20-*-*-*-*-*-*-* */
 
-URxvt.font: xft:UbuntuMono:size=13:style=Regular
-URxvt.boldFont: xft:UbuntuMono:size=13:style=Regular
-URxvt.italicFont: xft:UbuntuMono:size=13:style=Regular
-URxvt.boldItalicFont: xft:UbuntuMono:size=13:style=Regular
+URxvt.font: xft:UbuntuMono:size=14:style=Regular
+URxvt.boldFont: xft:UbuntuMono:size=14:style=Regular
+URxvt.italicFont: xft:UbuntuMono:size=14:style=Regular
+URxvt.boldItalicFont: xft:UbuntuMono:size=14:style=Regular
 
 URxvt.lineSpace: 0
 URxvt.letterSpace: -1
 
-/* URxvt.foreground: #C8C8C8 */
 URxvt.foreground: #BBBBBB
 URxvt.background: #000000
 
@@ -51,3 +50,25 @@ URxvt.color12:    #729FCF
 URxvt.color13:    #AD7FA8
 URxvt.color14:    #34E2E2
 URxvt.color15:    #EEEEEC
+
+/* URxvt.background: #2f2f2f */
+/* URxvt.foreground: #dcdccc */
+/* URxvt.cursorColor: #aaaaaa */
+/* URxvt.colorUL: #366060 */
+/* URxvt.underlineColor: #dfaf8f */
+/* URxvt.color0: #3f3f3f */
+/* URxvt.color1: #cc9393 */
+/* URxvt.color2: #7f9f7f */
+/* URxvt.color3: #d0bf8f */
+/* URxvt.color4: #6ca0a3 */
+/* URxvt.color5: #dc8cc3 */
+/* URxvt.color6: #93e0e3 */
+/* URxvt.color7: #dcdccc */
+/* URxvt.color8: #000000 */
+/* URxvt.color9: #dca3a3 */
+/* URxvt.color10: #bfebbf */
+/* URxvt.color11: #f0dfaf */
+/* URxvt.color12: #8cd0d3 */
+/* URxvt.color13: #dc8cc3 */
+/* URxvt.color14: #93e0e3 */
+/* URxvt.color15: #ffffff */
