@@ -8,12 +8,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'jamessan/vim-gnupg'
-Plug 'w0rp/ale'
 Plug 'othree/html5.vim'
 Plug 'briancollins/vim-jst'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+if v:version >= 800
+  Plug 'w0rp/ale'
+end
 
 call plug#end()
 
