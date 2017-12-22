@@ -140,10 +140,10 @@ nnoremap <silent> <leader>h :set hlsearch!<cr>
 nnoremap <silent> <leader>. :let @+ = expand("%")<cr>
 
 nnoremap <leader>s /\v
-nnoremap <leader>r :%s:\v:gcI<left><left><left><left>
-xnoremap <leader>r :s:\v:gcI<left><left><left><left>
-nnoremap <leader>g :g:\v:<left>
-nnoremap <leader>v :v:\v:<left>
+nnoremap <leader>r :%s/\v/gcI<left><left><left><left>
+xnoremap <leader>r :s/\v/gcI<left><left><left><left>
+nnoremap <leader>g :g/\v/<left>
+nnoremap <leader>v :v/\v/<left>
 nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'

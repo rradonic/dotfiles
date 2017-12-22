@@ -30,9 +30,3 @@ hi spellbad ctermbg=1 ctermfg=7
 hi spellcap ctermbg=4 ctermfg=7
 
 hi signcolumn ctermbg=0
-
-" plugins
-
-hi ctrlpmode1 ctermfg=none cterm=none ctermbg=8
-hi ctrlpmode2 ctermfg=none cterm=none ctermbg=8
-hi ctrlpstats ctermfg=none cterm=none ctermbg=8
