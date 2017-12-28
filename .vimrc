@@ -60,7 +60,7 @@ set shortmess+=I
 set wildmode=longest,list
 
 filetype indent off
-" set shiftround
+set shiftround
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -78,8 +78,6 @@ set matchpairs+=<:>
 set cryptmethod=blowfish
 
 set listchars+=tab:  
-
-set regexpengine=1
 
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
