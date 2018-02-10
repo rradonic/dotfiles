@@ -22,7 +22,11 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
+" set regexpengine=1
+
 set t_Co=8
+set scrolloff=0
+set sidescrolloff=1
 
 function! SetSyntax()
   if line2byte(line("$") + 1) > 100000
@@ -52,9 +56,6 @@ set ignorecase
 set nowrapscan
 set nohlsearch
 set noincsearch
-
-" set scrolloff=5
-" set sidescrolloff=5
 
 set shortmess+=I
 set wildmode=longest,list
@@ -105,7 +106,7 @@ function! GrepFind(find_command)
   if empty(searchPattern) | return | endif
 
   let pathPattern = input('Path pattern: ')
-  let pathPattern = '.*'
+  if empty(pathPattern) | let pathPattern = '.*' | endif
 
   let cmd = a:find_command . ' | grep ' .
     \ shellescape(pathPattern) .
