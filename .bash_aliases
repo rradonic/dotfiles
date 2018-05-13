@@ -5,3 +5,4 @@ function cs () {
 }
 
 alias gu="git status"
+alias fe="find . -iwholename"

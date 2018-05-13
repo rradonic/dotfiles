@@ -7,12 +7,17 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'jamessan/vim-gnupg'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 Plug 'othree/html5.vim'
-Plug 'briancollins/vim-jst'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 if v:version >= 800
   Plug 'w0rp/ale'
@@ -27,6 +32,7 @@ source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
+set laststatus=0
 
 function! SetSyntax()
   if line2byte(line("$") + 1) > 100000
@@ -55,7 +61,7 @@ set hidden
 set ignorecase
 set nowrapscan
 set nohlsearch
-set noincsearch
+" set noincsearch
 
 set shortmess+=I
 set wildmode=longest,list
@@ -83,9 +89,18 @@ set listchars+=tab:  
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
+set number
+
 " set lazyredraw
 
-let find_command = 'find . -type f -not -path ''*/.git/*'' -not -path ''*/log/*'' -not -path ''*/tmp/*'' -not -path ''*/coverage/*'''
+let find_command = 'find . -type f
+  \ -not -path ''*/.git/*''
+  \ -not -path ''*/log/*''
+  \ -not -path ''*/tmp/*''
+  \ -not -path ''*/coverage/*''
+  \ -not -path ''*/node_modules/*''
+  \ -not -path ''*/public/packs/*''
+  \ -not -path ''*/.keep'''
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
@@ -101,7 +116,7 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
-function! GrepFind(find_command)
+function! Grep(find_command)
   let searchPattern = input('Search pattern: ')
   if empty(searchPattern) | return | endif
 
@@ -110,7 +125,7 @@ function! GrepFind(find_command)
 
   let cmd = a:find_command . ' | grep ' .
     \ shellescape(pathPattern) .
-    \ ' | xargs grep -Ein '.
+    \ ' | xargs grep -Ene '.
     \ shellescape(searchPattern)
 
   cexpr system(cmd)
@@ -127,30 +142,27 @@ nnoremap <silent> <f3> qq
 nnoremap <silent> <f4> q
 nnoremap <silent> <f5> @q
 nnoremap <silent> <f9> <c-^>
-nnoremap <silent> <f12> :call GrepFind(find_command)<cr>
+nnoremap <silent> <f12> :call Grep(find_command)<cr>
 
 nnoremap <silent> <leader>m zz
 nnoremap <silent> <leader>t zt
 nnoremap <silent> <leader>c :botright cwindow<cr>
-nnoremap <silent> <leader>C :cclose<cr>
 nnoremap <silent> <leader>l :botright lwindow<cr>
-nnoremap <silent> <leader>L :botright lclose<cr>
 nnoremap <silent> <leader>h :set hlsearch!<cr>
 nnoremap <silent> <leader>. :let @+ = expand("%")<cr>
 
-nnoremap <leader>s /\v
-nnoremap <leader>r :%s/\v/gcI<left><left><left><left>
-xnoremap <leader>r :s/\v/gcI<left><left><left><left>
-nnoremap <leader>g :g/\v/<left>
-nnoremap <leader>v :v/\v/<left>
+nnoremap <leader>r :%s/\V/gcI<left><left><left><left>
+xnoremap <leader>r :s/\V/gcI<left><left><left><left>
+nnoremap <leader>g :g/\V/<left>
+nnoremap <leader>v :v/\V/<left>
 nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '10'})<cr>
-nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
+nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '15'})<cr>
+nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '15'})<cr>
 
-" nnoremap <silent> <leader>d :call append(line('.'), 'wfp')<cr><down>
+nnoremap <silent> <leader>d :call append(line('.') - 1, 'wfp')<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
@@ -189,8 +201,10 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 
-" let g:ale_set_highlights = 0
 let g:ale_set_signs = 0
-" let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 0
-" let g:ale_lint_on_save = 1
+let g:jsx_ext_required = 0
+
+let g:ale_pattern_options = {
+\  '.*\.erb$': {'ale_enabled': 0}
+\}

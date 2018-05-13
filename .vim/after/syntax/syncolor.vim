@@ -23,8 +23,11 @@ hi foldcolumn ctermbg=none ctermfg=0 cterm=none
 
 " hi todo ctermbg=none ctermfg=4
 
-hi linenr ctermfg=0 ctermbg=none cterm=bold
-hi cursorlinenr ctermfg=0 ctermbg=none cterm=bold
+" hi linenr ctermfg=0 ctermbg=none cterm=bold
+" hi cursorlinenr ctermfg=0 ctermbg=none cterm=bold
+
+hi linenr ctermfg=none
+hi cursorlinenr ctermfg=none
 
 hi spellbad ctermbg=1 ctermfg=7
 hi spellcap ctermbg=4 ctermfg=7

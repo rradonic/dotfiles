@@ -1,17 +1,16 @@
 setlocal expandtab shiftwidth=2 tabstop=2
 
-syntax clear javascriptbraces
-syntax clear javascriptglobal
+syntax clear jsternaryif
+syntax clear jsparenserror
+syntax clear jsglobalobjects
+syntax clear jsbuiltins
+syntax clear jshtmlevents
+syntax clear jsfuncname
+syntax clear jsblocklabel
 
-" syntax clear jsternaryif
-" syntax clear jsparenserror
-" syntax clear jsparenserra
-" syntax clear jsparenserrb
-" syntax clear jsparenserrc
-" syntax clear jsglobalobjects
-" syntax clear jsbuiltins
-" syntax clear jshtmlevents
-" syntax clear jsfuncname
+syntax clear jsoperator
+syntax keyword jsOperator delete instanceof typeof void new in of skipwhite skipempty nextgroup=@jsExpression
 
-" syntax clear jsoperator
-" syntax keyword jsoperator delete instanceof typeof void new in
+" highlight link jsclassdefinition none
+" highlight link jsclassfuncname none
+" highlight link jsarrowfunction none
