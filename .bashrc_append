@@ -4,3 +4,5 @@ export HISTFILESIZE=100000
 shopt -s histappend
 
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+export DISABLE_SPRING=1
