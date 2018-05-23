@@ -67,7 +67,7 @@ set shortmess+=I
 set wildmode=longest,list
 
 filetype indent off
-set shiftround
+" set shiftround
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -93,7 +93,7 @@ set number
 
 " set lazyredraw
 
-let find_command = 'find . -type f
+let find_command = 'find . -regextype posix-egrep -type f
   \ -not -path ''*/.git/*''
   \ -not -path ''*/log/*''
   \ -not -path ''*/tmp/*''
@@ -118,17 +118,26 @@ endfunction
 
 function! Grep(find_command)
   let searchPattern = input('Search pattern: ')
-  if empty(searchPattern) | return | endif
+
+  if empty(searchPattern)
+    return
+  endif
 
   let pathPattern = input('Path pattern: ')
-  if empty(pathPattern) | let pathPattern = '.*' | endif
 
-  let cmd = a:find_command . ' | grep ' .
+  if empty(pathPattern)
+    let pathPattern = '.*'
+  else
+    let pathPattern = '.*' . pathPattern . '.*'
+  endif
+
+  let cmd = a:find_command . ' -iregex ' .
     \ shellescape(pathPattern) .
-    \ ' | xargs grep -Ene '.
+    \ ' -print0 | xargs -0 grep -Ene '.
     \ shellescape(searchPattern)
 
   cexpr system(cmd)
+  " echo cmd
 endfunction
 
 " let mapleader = "\<space>"
