@@ -133,10 +133,11 @@ function! Grep(find_command)
 
   let cmd = a:find_command . ' -iregex ' .
     \ shellescape(pathPattern) .
-    \ ' -print0 | xargs -0 grep -Ene '.
+    \ ' -print0 | xargs -0 grep -Eine '.
     \ shellescape(searchPattern)
 
-  cexpr system(cmd)
+  cgetexpr system(cmd)
+  botright cwindow
   " echo cmd
 endfunction
 
