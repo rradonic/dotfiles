@@ -116,6 +116,8 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
+set errorformat=./%f:%l:%m
+
 function! Grep(find_command)
   let searchPattern = input('Search pattern: ')
 
