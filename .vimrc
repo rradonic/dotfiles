@@ -7,12 +7,12 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
@@ -67,7 +67,6 @@ set shortmess+=I
 set wildmode=longest,list
 
 filetype indent off
-" set shiftround
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -89,9 +88,8 @@ set listchars+=tab:  
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
+set lazyredraw
 set number
-
-" set lazyredraw
 
 let find_command = 'find . -regextype posix-egrep -type f
   \ -not -path ''*/.git/*''
@@ -116,8 +114,6 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
-set errorformat=./%f:%l:%m
-
 function! Grep(find_command)
   let searchPattern = input('Search pattern: ')
 
@@ -135,12 +131,12 @@ function! Grep(find_command)
 
   let cmd = a:find_command . ' -iregex ' .
     \ shellescape(pathPattern) .
-    \ ' -print0 | xargs -0 grep -Eine '.
-    \ shellescape(searchPattern)
+    \ ' -print0 | xargs -0 grep -Eine ' .
+    \ shellescape(searchPattern) .
+    \ ' | sed -e s:^./::'
 
   cgetexpr system(cmd)
   botright cwindow
-  " echo cmd
 endfunction
 
 " let mapleader = "\<space>"
@@ -160,7 +156,6 @@ nnoremap <silent> <leader>m zz
 nnoremap <silent> <leader>t zt
 nnoremap <silent> <leader>c :botright cwindow<cr>
 nnoremap <silent> <leader>l :botright lwindow<cr>
-nnoremap <silent> <leader>h :set hlsearch!<cr>
 nnoremap <silent> <leader>. :let @+ = expand("%")<cr>
 
 nnoremap <leader>r :%s/\V/gcI<left><left><left><left>
@@ -205,9 +200,9 @@ endfunction
 
 augroup visibility_group
   autocmd!
-  autocmd FileType * :call VisibilityCallback()
-  autocmd FileType * :call HighlightConflictMarkers()
-  " autocmd FileType * :call ShowSignColumn()
+  autocmd User * :call VisibilityCallback()
+  autocmd User * :call HighlightConflictMarkers()
+  " autocmd User * :call ShowSignColumn()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

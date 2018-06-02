@@ -8,8 +8,8 @@ syntax clear jshtmlevents
 syntax clear jsfuncname
 syntax clear jsblocklabel
 
-syntax clear jsoperator
-syntax keyword jsOperator delete instanceof typeof void new in of skipwhite skipempty nextgroup=@jsExpression
+" syntax clear jsoperator
+" syntax keyword jsOperator delete instanceof typeof void new in of skipwhite skipempty nextgroup=@jsExpression
 
 " highlight link jsclassdefinition none
 " highlight link jsclassfuncname none
