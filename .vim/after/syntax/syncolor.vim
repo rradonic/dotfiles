@@ -9,9 +9,9 @@ hi statuslinenc ctermbg=none ctermfg=none cterm=reverse
 hi vertsplit ctermfg=none
 
 hi diffadd ctermbg=2 ctermfg=7
-hi diffchange ctermbg=0 ctermfg=7
-hi diffdelete ctermbg=1 ctermfg=0
-hi difftext ctermbg=4 ctermfg=7
+hi diffchange ctermbg=4 ctermfg=7
+hi diffdelete ctermbg=1 ctermfg=none
+hi difftext ctermbg=5 ctermfg=7
 
 hi folded ctermbg=none ctermfg=none
 hi foldcolumn ctermbg=none ctermfg=none

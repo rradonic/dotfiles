@@ -13,26 +13,26 @@ URxvt.pointerBlankDelay: 987654321
 URxvt.jumpScroll: true
 URxvt.skipScroll: true
 
-URxvt.font: 10x20
-URxvt.boldFont: 10x20
-URxvt.italicFont: 10x20
-URxvt.boldItalicFont: 10x20
+/* URxvt.font: 10x20 */
+/* URxvt.boldFont: 10x20 */
+/* URxvt.italicFont: 10x20 */
+/* URxvt.boldItalicFont: 10x20 */
 
 /* URxvt.font: -*-terminus-*-r-*-*-20-*-*-*-*-*-*-* */
 /* URxvt.boldFont: -*-terminus-*-r-*-*-20-*-*-*-*-*-*-* */
 /* URxvt.italicFont: -*-terminus-*-r-*-*-20-*-*-*-*-*-*-* */
 /* URxvt.boldItalicFont: -*-terminus-*-r-*-*-20-*-*-*-*-*-*-* */
 
-/* URxvt.font: xft:UbuntuMono:size=16:style=Regular */
-/* URxvt.boldFont: xft:UbuntuMono:size=16:style=Regular */
-/* URxvt.italicFont: xft:UbuntuMono:size=16:style=Regular */
-/* URxvt.boldItalicFont: xft:UbuntuMono:size=16:style=Regular */
+URxvt.font: xft:UbuntuMono:size=16:style=Regular
+URxvt.boldFont: xft:UbuntuMono:size=16:style=Regular
+URxvt.italicFont: xft:UbuntuMono:size=16:style=Regular
+URxvt.boldItalicFont: xft:UbuntuMono:size=16:style=Regular
 
 URxvt.lineSpace: 0
 URxvt.letterSpace: 0
 
-*background:              #000000
-*foreground:              #babdb6
+*background:              #222222
+*foreground:              #aaaaaa
 *color0:                  #2e3436
 *color1:                  #cc0000
 *color2:                  #4e9a06

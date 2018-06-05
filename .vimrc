@@ -32,7 +32,7 @@ source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
-set laststatus=0
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
 function! SetSyntax()
   if line2byte(line("$") + 1) > 100000
@@ -169,7 +169,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '15'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '15'})<cr>
 
-nnoremap <silent> <leader>d :call append(line('.') - 1, 'wfp')<cr>
+nnoremap <silent> <leader>d :call append(line('.'), 'wfp')<cr><cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
@@ -193,16 +193,10 @@ function! HighlightConflictMarkers()
   highlight link conflictMarker error
 endfunction
 
-function! ShowSignColumn()
-  sign define dummy
-  execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-endfunction
-
 augroup visibility_group
   autocmd!
   autocmd User * :call VisibilityCallback()
   autocmd User * :call HighlightConflictMarkers()
-  " autocmd User * :call ShowSignColumn()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
