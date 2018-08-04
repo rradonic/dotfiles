@@ -1,4 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basics
 
 call plug#begin('~/.vim/plugged')
@@ -32,7 +31,7 @@ source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
-set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=0
 
 function! SetSyntax()
   if line2byte(line("$") + 1) > 100000
@@ -61,7 +60,6 @@ set hidden
 set ignorecase
 set nowrapscan
 set nohlsearch
-" set noincsearch
 
 set shortmess+=I
 set wildmode=longest,list
@@ -100,7 +98,6 @@ let find_command = 'find . -regextype posix-egrep -type f
   \ -not -path ''*/public/packs/*''
   \ -not -path ''*/.keep'''
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
 function! CurrentHighlight()
@@ -171,7 +168,6 @@ nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('
 
 nnoremap <silent> <leader>d :call append(line('.'), 'wfp')<cr><cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
 
 set fillchars=vert: ,diff: 
@@ -195,8 +191,8 @@ endfunction
 
 augroup visibility_group
   autocmd!
-  autocmd User * :call VisibilityCallback()
-  autocmd User * :call HighlightConflictMarkers()
+  autocmd FileType * :call VisibilityCallback()
+  autocmd FileType * :call HighlightConflictMarkers()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -207,5 +203,5 @@ let g:ale_lint_on_text_changed = 0
 let g:jsx_ext_required = 0
 
 let g:ale_pattern_options = {
-\  '.*\.erb$': {'ale_enabled': 0}
+\  '.*\.erb$': { 'ale_enabled': 0 }
 \}
