@@ -1,4 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basics
 
 call plug#begin('~/.vim/plugged')
@@ -29,10 +28,10 @@ source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
 " set regexpengine=1
 
-set t_Co=8
+" set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
-set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=0
 
 function! SetSyntax()
   if line2byte(line("$") + 1) > 100000
@@ -61,7 +60,6 @@ set hidden
 set ignorecase
 set nowrapscan
 set nohlsearch
-" set noincsearch
 
 set shortmess+=I
 set wildmode=longest,list
@@ -100,7 +98,6 @@ let find_command = 'find . -regextype posix-egrep -type f
   \ -not -path ''*/public/packs/*''
   \ -not -path ''*/.keep'''
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keyboard mappings
 
 function! CurrentHighlight()
@@ -115,13 +112,16 @@ function! CurrentHighlight()
 endfunction
 
 function! Grep(find_command)
-  let searchPattern = input('Search pattern: ')
+  let pattern = input('Search pattern: ')
 
-  if empty(searchPattern)
+  if empty(pattern)
     return
   endif
 
-  let pathPattern = input('Path pattern: ')
+  let splitPattern = split(pattern)
+
+  let searchPattern = get(splitPattern, 0)
+  let pathPattern = get(splitPattern, 1, '')
 
   if empty(pathPattern)
     let pathPattern = '.*'
@@ -132,8 +132,7 @@ function! Grep(find_command)
   let cmd = a:find_command . ' -iregex ' .
     \ shellescape(pathPattern) .
     \ ' -print0 | xargs -0 grep -Eine ' .
-    \ shellescape(searchPattern) .
-    \ ' | sed -e s:^./::'
+    \ shellescape(searchPattern)
 
   cgetexpr system(cmd)
   botright cwindow
@@ -146,17 +145,17 @@ nnoremap <backspace> :
 nnoremap Y y$
 
 nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
-nnoremap <silent> <f3> qq
-nnoremap <silent> <f4> q
-nnoremap <silent> <f5> @q
-nnoremap <silent> <f9> <c-^>
+nnoremap <f3> qq
+nnoremap <f4> q
+nnoremap <f5> @q
+nnoremap <f9> <c-^>
 nnoremap <silent> <f12> :call Grep(find_command)<cr>
 
-nnoremap <silent> <leader>m zz
-nnoremap <silent> <leader>t zt
+nnoremap <leader>m zz
+nnoremap <leader>t zt
 nnoremap <silent> <leader>c :botright cwindow<cr>
 nnoremap <silent> <leader>l :botright lwindow<cr>
-nnoremap <silent> <leader>. :let @+ = expand("%")<cr>
+nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
 
 nnoremap <leader>r :%s/\V/gcI<left><left><left><left>
 xnoremap <leader>r :s/\V/gcI<left><left><left><left>
@@ -169,9 +168,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '15'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '15'})<cr>
 
-nnoremap <silent> <leader>d :call append(line('.'), 'wfp')<cr><cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " visual stuff
 
 set fillchars=vert: ,diff: 
@@ -186,17 +182,19 @@ function! HighlightConflictMarkers()
     return
   end
 
-  syntax match conflictMarker /<<<<<<<.*/
-  syntax match conflictMarker /=======.*/
-  syntax match conflictMarker />>>>>>>.*/
+  silent! call matchdelete(9999)
+  silent! call matchdelete(9998)
+  silent! call matchdelete(9997)
 
-  highlight link conflictMarker error
+  call matchadd('error', '^<<<<<<<.*', -1, 9999)
+  call matchadd('error', '^=======.*', -1, 9998)
+  call matchadd('error', '^>>>>>>>.*', -1, 9997)
 endfunction
 
 augroup visibility_group
   autocmd!
-  autocmd User * :call VisibilityCallback()
-  autocmd User * :call HighlightConflictMarkers()
+  autocmd BufRead * :call VisibilityCallback()
+  autocmd BufRead * :call HighlightConflictMarkers()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,8 +202,8 @@ augroup END
 
 let g:ale_set_signs = 0
 let g:ale_lint_on_text_changed = 0
-let g:jsx_ext_required = 0
-
 let g:ale_pattern_options = {
-\  '.*\.erb$': {'ale_enabled': 0}
+\  '.*\.erb$': { 'ale_enabled': 0 }
 \}
+
+let g:jsx_ext_required = 0

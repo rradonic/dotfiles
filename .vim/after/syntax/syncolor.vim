@@ -18,7 +18,7 @@ hi foldcolumn ctermbg=none ctermfg=none
 
 hi todo ctermbg=none ctermfg=4
 
-hi linenr ctermfg=none
+hi linenr ctermbg=none ctermfg=none
 hi cursorlinenr ctermfg=none
 
 " hi linenr ctermfg=none

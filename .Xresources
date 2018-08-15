@@ -23,15 +23,15 @@ URxvt.skipScroll: true
 /* URxvt.italicFont: -*-terminus-*-r-*-*-20-*-*-*-*-*-*-* */
 /* URxvt.boldItalicFont: -*-terminus-*-r-*-*-20-*-*-*-*-*-*-* */
 
-URxvt.font: xft:UbuntuMono:size=16:style=Regular
-URxvt.boldFont: xft:UbuntuMono:size=16:style=Regular
-URxvt.italicFont: xft:UbuntuMono:size=16:style=Regular
-URxvt.boldItalicFont: xft:UbuntuMono:size=16:style=Regular
+URxvt.font: xft:UbuntuMono:size=18:style=Regular
+URxvt.boldFont: xft:UbuntuMono:size=18:style=Regular
+URxvt.italicFont: xft:UbuntuMono:size=18:style=Regular
+URxvt.boldItalicFont: xft:UbuntuMono:size=18:style=Regular
 
-URxvt.lineSpace: 0
-URxvt.letterSpace: 0
+URxvt.lineSpace: 1
+URxvt.letterSpace: -1
 
-*background:              #222222
+*background:              #000000
 *foreground:              #aaaaaa
 *color0:                  #2e3436
 *color1:                  #cc0000
