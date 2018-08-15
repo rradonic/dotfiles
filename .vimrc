@@ -26,27 +26,9 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
-" set regexpengine=1
-
-" set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
 set laststatus=0
-
-function! SetSyntax()
-  if line2byte(line("$") + 1) > 100000
-    syntax clear
-  else
-    syntax sync fromstart
-    set synmaxcol=0
-    set maxmempattern=100000
-  endif
-endfunction
-
-augroup syntax_group
-  autocmd!
-  autocmd FileType * :call SetSyntax()
-augroup END
 
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
@@ -82,6 +64,7 @@ set matchpairs+=<:>
 set cryptmethod=blowfish
 
 set listchars+=tab:  
+set fillchars=vert: ,diff: 
 
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
@@ -168,9 +151,22 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '15'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '15'})<cr>
 
-" visual stuff
+" autocmds
 
-set fillchars=vert: ,diff: 
+function! SetSyntax()
+  if line2byte(line("$") + 1) > 100000
+    syntax clear
+  else
+    syntax sync fromstart
+    set synmaxcol=0
+    set maxmempattern=100000
+  endif
+endfunction
+
+augroup syntax_group
+  autocmd!
+  autocmd FileType * :call SetSyntax()
+augroup END
 
 function! VisibilityCallback()
   set list
@@ -197,8 +193,7 @@ augroup visibility_group
   autocmd BufRead * :call HighlightConflictMarkers()
 augroup END
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugins
+" plugin config
 
 let g:ale_set_signs = 0
 let g:ale_lint_on_text_changed = 0
