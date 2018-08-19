@@ -26,6 +26,7 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
+" set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
 set laststatus=0
@@ -169,8 +170,8 @@ augroup syntax_group
 augroup END
 
 function! VisibilityCallback()
-  set list
-  set conceallevel=0
+  setlocal list
+  setlocal conceallevel=0
 endfunction
 
 function! HighlightConflictMarkers()

@@ -1,3 +1,5 @@
+" hi visual ctermfg=0
+
 hi cursorline cterm=none
 hi tabline cterm=none
 
@@ -21,7 +23,7 @@ hi todo ctermbg=none ctermfg=4
 hi linenr ctermbg=none ctermfg=none
 hi cursorlinenr ctermfg=none
 
-" hi linenr ctermfg=none
+hi linenr ctermfg=none
 " hi cursorlinenr ctermfg=none
 
 hi spellbad ctermbg=1 ctermfg=7
