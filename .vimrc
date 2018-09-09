@@ -26,7 +26,7 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
-" set t_Co=8
+set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
 set laststatus=0
@@ -61,6 +61,7 @@ set foldlevel=1000
 set diffopt=filler,foldcolumn:0,context:2147483647
 
 set matchpairs+=<:>
+set iskeyword+=-
 
 set cryptmethod=blowfish
 
@@ -72,15 +73,6 @@ let g:loaded_netrw=1
 
 set lazyredraw
 set number
-
-let find_command = 'find . -regextype posix-egrep -type f
-  \ -not -path ''*/.git/*''
-  \ -not -path ''*/log/*''
-  \ -not -path ''*/tmp/*''
-  \ -not -path ''*/coverage/*''
-  \ -not -path ''*/node_modules/*''
-  \ -not -path ''*/public/packs/*''
-  \ -not -path ''*/.keep'''
 
 " keyboard mappings
 
@@ -95,33 +87,6 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
-function! Grep(find_command)
-  let pattern = input('Search pattern: ')
-
-  if empty(pattern)
-    return
-  endif
-
-  let splitPattern = split(pattern)
-
-  let searchPattern = get(splitPattern, 0)
-  let pathPattern = get(splitPattern, 1, '')
-
-  if empty(pathPattern)
-    let pathPattern = '.*'
-  else
-    let pathPattern = '.*' . pathPattern . '.*'
-  endif
-
-  let cmd = a:find_command . ' -iregex ' .
-    \ shellescape(pathPattern) .
-    \ ' -print0 | xargs -0 grep -Eine ' .
-    \ shellescape(searchPattern)
-
-  cgetexpr system(cmd)
-  botright cwindow
-endfunction
-
 " let mapleader = "\<space>"
 " let maplocalleader = "\<backspace>"
 
@@ -133,7 +98,7 @@ nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
 nnoremap <f9> <c-^>
-nnoremap <silent> <f12> :call Grep(find_command)<cr>
+nnoremap <f12> :grep 
 
 nnoremap <leader>m zz
 nnoremap <leader>t zt
@@ -149,7 +114,7 @@ nnoremap <leader>f :set foldlevel=
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-nnoremap <silent> <leader>p :call fzf#run({'source': find_command, 'sink': 'e', 'down': '15'})<cr>
+nnoremap <silent> <leader>p :call fzf#run({'sink': 'e', 'down': '15'})<cr>
 nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '15'})<cr>
 
 " autocmds
@@ -203,3 +168,8 @@ let g:ale_pattern_options = {
 \}
 
 let g:jsx_ext_required = 0
+
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading\ -g\ '!db/data/*'\ -g\ '!**/vendor/*'\ -g\ '!**/sample-lessons/*'
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif

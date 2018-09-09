@@ -1,10 +1,11 @@
-" hi visual ctermfg=0
+hi visual ctermfg=8
 
 hi cursorline cterm=none
 hi tabline cterm=none
 
 hi colorcolumn ctermbg=0
 hi search ctermbg=3 ctermfg=0 cterm=none
+" hi search ctermbg=3 ctermfg=7 cterm=none
 
 hi statusline ctermbg=none ctermfg=none cterm=reverse,standout
 hi statuslinenc ctermbg=none ctermfg=none cterm=reverse
