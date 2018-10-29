@@ -29,7 +29,7 @@ source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
-set laststatus=0
+set laststatus=1
 
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
@@ -87,9 +87,6 @@ function! CurrentHighlight()
   return highlightGroup . ', ' . transparentGroup . ', ' . translatedGroup
 endfunction
 
-" let mapleader = "\<space>"
-" let maplocalleader = "\<backspace>"
-
 nnoremap <backspace> :
 nnoremap Y y$
 
@@ -97,9 +94,8 @@ nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
-nnoremap <f9> <c-^>
-nnoremap <f12> :grep 
 
+nnoremap <leader>g :grep 
 nnoremap <leader>m zz
 nnoremap <leader>t zt
 nnoremap <silent> <leader>c :botright cwindow<cr>
@@ -108,9 +104,8 @@ nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
 
 nnoremap <leader>r :%s/\V/gcI<left><left><left><left>
 xnoremap <leader>r :s/\V/gcI<left><left><left><left>
-nnoremap <leader>g :g/\V/<left>
-nnoremap <leader>v :v/\V/<left>
 nnoremap <leader>f :set foldlevel=
+nnoremap <leader>d <c-^>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
@@ -128,11 +123,6 @@ function! SetSyntax()
     set maxmempattern=100000
   endif
 endfunction
-
-augroup syntax_group
-  autocmd!
-  autocmd FileType * :call SetSyntax()
-augroup END
 
 function! VisibilityCallback()
   setlocal list
@@ -153,8 +143,9 @@ function! HighlightConflictMarkers()
   call matchadd('error', '^>>>>>>>.*', -1, 9997)
 endfunction
 
-augroup visibility_group
+augroup autocmd_group
   autocmd!
+  autocmd FileType * :call SetSyntax()
   autocmd BufRead * :call VisibilityCallback()
   autocmd BufRead * :call HighlightConflictMarkers()
 augroup END
@@ -170,6 +161,11 @@ let g:ale_pattern_options = {
 let g:jsx_ext_required = 0
 
 if executable("rg")
-  set grepprg=rg\ --vimgrep\ --no-heading\ -g\ '!db/data/*'\ -g\ '!**/vendor/*'\ -g\ '!**/sample-lessons/*'
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  set grepprg=rg\ -i\ \ --vimgrep\ --no-heading
+    \\ -g\ '!db/data/*'
+    \\ -g\ '!**/vendor/*'
+    \\ -g\ '!**/sample-lessons/*'
+    \\ -g\ '!**/fonts/*'
+    \\ -g\ '!**/public/remark/*'
+  set grepformat=%f:%l:%c:%m
 endif

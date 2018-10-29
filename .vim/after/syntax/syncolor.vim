@@ -21,11 +21,8 @@ hi foldcolumn ctermbg=none ctermfg=none
 
 hi todo ctermbg=none ctermfg=4
 
-hi linenr ctermbg=none ctermfg=none
+hi linenr ctermbg=0 ctermfg=none
 hi cursorlinenr ctermfg=none
-
-hi linenr ctermfg=none
-" hi cursorlinenr ctermfg=none
 
 hi spellbad ctermbg=1 ctermfg=7
 hi spellcap ctermbg=4 ctermfg=7

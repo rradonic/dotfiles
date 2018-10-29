@@ -14,9 +14,3 @@
 	keepBackup = false
 [push]
 	default = simple
-[alias]
-	co = checkout
-	br = branch
-	ci = commit
-	unstage = reset HEAD --
-	pushf = push -u origin $(git rev-parse --abbrev-ref HEAD)
