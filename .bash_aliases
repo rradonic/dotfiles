@@ -5,6 +5,7 @@ function cs () {
 }
 
 alias gu="git status"
+alias glog="git log"
 alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
 alias gpusho="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
 alias gpushf="git push --force-with-lease"

@@ -9,6 +9,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -26,10 +27,8 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
-set t_Co=8
 set scrolloff=0
 set sidescrolloff=1
-set laststatus=1
 
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
@@ -53,7 +52,7 @@ set shiftwidth=2
 set tabstop=2
 
 set mouse=a
-set ttymouse=xterm2
+
 set clipboard=unnamedplus
 
 set foldmethod=indent
@@ -63,8 +62,6 @@ set diffopt=filler,foldcolumn:0,context:2147483647
 set matchpairs+=<:>
 set iskeyword+=-
 
-set cryptmethod=blowfish
-
 set listchars+=tab:  
 set fillchars=vert: ,diff: 
 
@@ -73,6 +70,14 @@ let g:loaded_netrw=1
 
 set lazyredraw
 set number
+
+if has('nvim')
+  set guicursor=
+else
+  set t_Co=8
+  set ttymouse=xterm2
+  set cryptmethod=blowfish
+end
 
 " keyboard mappings
 
@@ -96,6 +101,7 @@ nnoremap <f4> q
 nnoremap <f5> @q
 
 nnoremap <leader>g :grep 
+nnoremap <leader>w yiw:grep <c-r>"
 nnoremap <leader>m zz
 nnoremap <leader>t zt
 nnoremap <silent> <leader>c :botright cwindow<cr>
@@ -109,8 +115,10 @@ nnoremap <leader>d <c-^>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-nnoremap <silent> <leader>p :call fzf#run({'sink': 'e', 'down': '15'})<cr>
-nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '15'})<cr>
+nnoremap <silent> <leader>p :call fzf#run({'sink': 'e', 'down': '10'})<cr>
+nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
+" nnoremap <silent> <leader>p :FZF<cr>
+" nnoremap <silent> <leader>b :Buffers<cr>
 
 " autocmds
 
@@ -153,6 +161,7 @@ augroup END
 " plugin config
 
 let g:ale_set_signs = 0
+let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 0
 let g:ale_pattern_options = {
 \  '.*\.erb$': { 'ale_enabled': 0 }
@@ -169,3 +178,5 @@ if executable("rg")
     \\ -g\ '!**/public/remark/*'
   set grepformat=%f:%l:%c:%m
 endif
+
+let g:fzf_layout = { 'down': '12' }
