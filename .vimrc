@@ -19,6 +19,8 @@ Plug 'mxw/vim-jsx'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
+Plug 'jpalardy/vim-slime'
+
 if v:version >= 800
   Plug 'w0rp/ale'
 end
@@ -27,6 +29,7 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
+set laststatus=1
 set scrolloff=0
 set sidescrolloff=1
 
@@ -74,7 +77,7 @@ set number
 if has('nvim')
   set guicursor=
 else
-  set t_Co=8
+  " set t_Co=8
   set ttymouse=xterm2
   set cryptmethod=blowfish
 end
@@ -156,6 +159,7 @@ augroup autocmd_group
   autocmd FileType * :call SetSyntax()
   autocmd BufRead * :call VisibilityCallback()
   autocmd BufRead * :call HighlightConflictMarkers()
+  autocmd FileType * setlocal formatoptions-=cro
 augroup END
 
 " plugin config
@@ -180,3 +184,5 @@ if executable("rg")
 endif
 
 let g:fzf_layout = { 'down': '12' }
+
+let g:slime_target = 'tmux'

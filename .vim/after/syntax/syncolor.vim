@@ -1,11 +1,10 @@
-hi visual ctermbg=8 ctermfg=7
+hi visual ctermbg=7 ctermfg=8
 
 hi cursorline cterm=none
 hi tabline cterm=none
 
 hi colorcolumn ctermbg=0
-hi search ctermbg=3 ctermfg=0 cterm=none
-" hi search ctermbg=3 ctermfg=7 cterm=none
+hi search ctermbg=8 ctermfg=7
 
 hi statusline ctermbg=none ctermfg=none cterm=reverse,standout
 hi statuslinenc ctermbg=none ctermfg=none cterm=reverse
@@ -26,6 +25,8 @@ hi linenr ctermfg=8 ctermbg=0
 
 hi spellbad ctermbg=1 ctermfg=15
 hi spellcap ctermbg=4 ctermfg=15
+
+hi error ctermbg=1 ctermfg=15
 
 " hi signcolumn ctermbg=0
 
