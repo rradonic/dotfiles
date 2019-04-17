@@ -9,7 +9,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -17,9 +17,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-
-Plug 'jpalardy/vim-slime'
+Plug 'rhysd/vim-textobj-ruby'
 
 if v:version >= 800
   Plug 'w0rp/ale'
@@ -97,6 +95,8 @@ endfunction
 
 nnoremap <backspace> :
 nnoremap Y y$
+xnoremap gp "0p
+nnoremap <silent> du :diffupdate<cr>
 
 nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
@@ -118,10 +118,10 @@ nnoremap <leader>d <c-^>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-nnoremap <silent> <leader>p :call fzf#run({'sink': 'e', 'down': '10'})<cr>
-nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
-" nnoremap <silent> <leader>p :FZF<cr>
-" nnoremap <silent> <leader>b :Buffers<cr>
+" nnoremap <silent> <leader>p :call fzf#run({'sink': 'e', 'down': '10'})<cr>
+" nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
+nnoremap <silent> <leader>p :FZF<cr>
+nnoremap <silent> <leader>b :Buffers<cr>
 
 " autocmds
 
@@ -156,10 +156,10 @@ endfunction
 
 augroup autocmd_group
   autocmd!
+  autocmd FileType * setlocal formatoptions-=o
   autocmd FileType * :call SetSyntax()
   autocmd BufRead * :call VisibilityCallback()
   autocmd BufRead * :call HighlightConflictMarkers()
-  autocmd FileType * setlocal formatoptions-=cro
 augroup END
 
 " plugin config
@@ -173,16 +173,12 @@ let g:ale_pattern_options = {
 
 let g:jsx_ext_required = 0
 
+let g:rg_options = "-g '!db/data/*' -g '!**/vendor/*' -g '!**/sample-lessons/*' -g '!**/fonts/*' -g '!**/public/remark/*' -g '!**/mathjax*.{js,css}' -g '!spec/dummy/*'"
+
 if executable("rg")
-  set grepprg=rg\ -i\ \ --vimgrep\ --no-heading
-    \\ -g\ '!db/data/*'
-    \\ -g\ '!**/vendor/*'
-    \\ -g\ '!**/sample-lessons/*'
-    \\ -g\ '!**/fonts/*'
-    \\ -g\ '!**/public/remark/*'
+  let &grepprg='rg -i --vimgrep --no-heading ' . g:rg_options
   set grepformat=%f:%l:%c:%m
 endif
 
+let $FZF_DEFAULT_COMMAND = 'rg --files --sort-files ' . g:rg_options
 let g:fzf_layout = { 'down': '12' }
-
-let g:slime_target = 'tmux'
