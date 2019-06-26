@@ -1,5 +1,3 @@
-" basics
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
@@ -13,6 +11,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
@@ -22,6 +21,8 @@ Plug 'rhysd/vim-textobj-ruby'
 if v:version >= 800
   Plug 'w0rp/ale'
 end
+
+packadd cfilter
 
 call plug#end()
 
@@ -103,7 +104,7 @@ nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
 
-nnoremap <leader>g :grep 
+nnoremap <leader>g :grep ''<left>
 nnoremap <leader>w yiw:grep <c-r>"
 nnoremap <leader>m zz
 nnoremap <leader>t zt
@@ -158,18 +159,30 @@ augroup autocmd_group
   autocmd!
   autocmd FileType * setlocal formatoptions-=o
   autocmd FileType * :call SetSyntax()
-  autocmd BufRead * :call VisibilityCallback()
-  autocmd BufRead * :call HighlightConflictMarkers()
+  autocmd FileType,BufRead * :call VisibilityCallback()
+  autocmd FileType,BufRead * :call HighlightConflictMarkers()
 augroup END
 
 " plugin config
 
-let g:ale_set_signs = 0
-let g:ale_lint_on_enter = 0
+let g:ale_set_signs = 1
+let g:ale_set_highlights = 0
+let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 0
-let g:ale_pattern_options = {
-\  '.*\.erb$': { 'ale_enabled': 0 }
-\}
+" let g:ale_pattern_options = {
+" \  '.*\.erb$': { 'ale_enabled': 0 }
+" \}
+" call ale#linter#Define('eruby', {
+"   \   'name': 'erubylint2',
+"   \   'executable': 'erb',
+"   \   'output_stream': 'stderr',
+"   \   'command': "ruby -rerb -e \"puts ERB.new(File.read(%t, encoding: 'BINARY').gsub('<%=','<%'), nil, '-').src\" | ruby -c",
+"   \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
+"   \})
+
+let g:ale_linters = {}
+" let g:ale_linters['eruby'] = ['ruumba']
+let g:ale_linters['eruby'] = []
 
 let g:jsx_ext_required = 0
 
