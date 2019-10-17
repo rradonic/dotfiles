@@ -15,4 +15,8 @@ alias ub="cd ~/projects/unbounded"
 alias lap="cd ~/projects/lcms_admin_panel"
 alias up="cd ~/projects/unbounded_planning"
 
+alias clp="cd ~/projects/client-portal"
+alias fa="cd ~/projects/facilitator-portal"
+alias kh="cd ~/projects/kh-iiab"
+
 alias todo="vim ~/Documents/todo.txt"

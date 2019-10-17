@@ -12,7 +12,7 @@ hi vertsplit ctermfg=none
 
 hi diffadd ctermbg=2 ctermfg=0
 hi diffchange ctermbg=8 ctermfg=7
-hi diffdelete ctermbg=1 ctermfg=none
+hi diffdelete ctermbg=none ctermfg=none
 hi difftext ctermbg=4 ctermfg=15
 
 hi folded ctermbg=none ctermfg=none
@@ -27,6 +27,7 @@ hi spellbad ctermbg=1 ctermfg=0
 hi spellcap ctermbg=4 ctermfg=0
 
 hi error ctermbg=1 ctermfg=0
+hi errormsg ctermfg=1 ctermfg=0
 
 " hi link aleerrorline spellbad
 " hi link alewarningline spellcap

@@ -14,9 +14,9 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'slim-template/vim-slim'
 
-Plug 'kana/vim-textobj-user'
-Plug 'rhysd/vim-textobj-ruby'
+Plug 'michaeljsmith/vim-indent-object'
 
 if v:version >= 800
   Plug 'w0rp/ale'
@@ -59,7 +59,7 @@ set clipboard=unnamedplus
 
 set foldmethod=indent
 set foldlevel=1000
-set diffopt=filler,foldcolumn:0,context:2147483647
+set diffopt=filler,foldcolumn:0,context:2147483647,vertical
 
 set matchpairs+=<:>
 set iskeyword+=-
@@ -115,7 +115,9 @@ nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
 nnoremap <leader>r :%s/\V/gcI<left><left><left><left>
 xnoremap <leader>r :s/\V/gcI<left><left><left><left>
 nnoremap <leader>f :set foldlevel=
+nnoremap <leader>F :set foldlevel=100<cr>
 nnoremap <leader>d <c-^>
+nnoremap <leader>Cf :Cfilter
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
@@ -127,13 +129,9 @@ nnoremap <silent> <leader>b :Buffers<cr>
 " autocmds
 
 function! SetSyntax()
-  if line2byte(line("$") + 1) > 100000
-    syntax clear
-  else
-    syntax sync fromstart
-    set synmaxcol=0
-    set maxmempattern=100000
-  endif
+  syntax sync fromstart
+  set synmaxcol=0
+  set maxmempattern=100000
 endfunction
 
 function! VisibilityCallback()
@@ -165,24 +163,17 @@ augroup END
 
 " plugin config
 
-let g:ale_set_signs = 1
-let g:ale_set_highlights = 0
-let g:ale_lint_on_enter = 1
+let g:ale_set_signs = 0
+let g:ale_set_highlights = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_text_changed = 0
-" let g:ale_pattern_options = {
-" \  '.*\.erb$': { 'ale_enabled': 0 }
-" \}
-" call ale#linter#Define('eruby', {
-"   \   'name': 'erubylint2',
-"   \   'executable': 'erb',
-"   \   'output_stream': 'stderr',
-"   \   'command': "ruby -rerb -e \"puts ERB.new(File.read(%t, encoding: 'BINARY').gsub('<%=','<%'), nil, '-').src\" | ruby -c",
-"   \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
-"   \})
 
-let g:ale_linters = {}
-" let g:ale_linters['eruby'] = ['ruumba']
-let g:ale_linters['eruby'] = []
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['ruby', 'rubocop'],
+\   'eruby': []
+\}
 
 let g:jsx_ext_required = 0
 
