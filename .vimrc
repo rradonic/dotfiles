@@ -13,6 +13,7 @@ Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'briancollins/vim-jst'
 Plug 'mxw/vim-jsx'
 Plug 'slim-template/vim-slim'
 
@@ -65,13 +66,14 @@ set matchpairs+=<:>
 set iskeyword+=-
 
 set listchars+=tab:  
-set fillchars=vert: ,diff: 
+set fillchars=vert: 
 
 let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
 set lazyredraw
 set number
+set signcolumn=yes
 
 if has('nvim')
   set guicursor=
@@ -163,16 +165,27 @@ augroup END
 
 " plugin config
 
-let g:ale_set_signs = 0
-let g:ale_set_highlights = 1
+let g:ale_linters_explicit = 1
+let g:ale_set_signs = 1
+let g:ale_set_highlights = 0
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_text_changed = 0
+let g:ale_fix_on_save = 1
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'ruby': ['ruby', 'rubocop'],
-\   'eruby': []
+\   'scss': ['stylelint'],
+\   'eruby': [],
+\}
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\   'scss': ['prettier'],
+\   'json': ['prettier'],
+\   'ruby': ['rubocop'],
 \}
 
 let g:jsx_ext_required = 0
