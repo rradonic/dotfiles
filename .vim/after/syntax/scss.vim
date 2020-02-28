@@ -4,5 +4,7 @@ hi link sassDefinition PreProc
 hi link sassMixinName Identifier
 
 syntax clear cssKeyFrameProp
+syntax clear cssAttrRegion
+syntax clear cssDefinition
 
 " syntax sync fromstart
