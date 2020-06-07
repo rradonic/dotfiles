@@ -6,18 +6,20 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 
+Plug 'michaeljsmith/vim-indent-object'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'othree/html5.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'briancollins/vim-jst'
-Plug 'mxw/vim-jsx'
-Plug 'slim-template/vim-slim'
+" Plug 'othree/html5.vim'
+" Plug 'hail2u/vim-css3-syntax'
+" Plug 'cakebaker/scss-syntax.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'briancollins/vim-jst'
+" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'slim-template/vim-slim'
 
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'sheerun/vim-polyglot'
 
 if v:version >= 800
   Plug 'w0rp/ale'
@@ -45,6 +47,7 @@ set hidden
 set ignorecase
 set nowrapscan
 set nohlsearch
+set textwidth=99
 
 set shortmess+=I
 set wildmode=longest,list
@@ -74,8 +77,10 @@ let g:loaded_netrw=1
 set lazyredraw
 set number
 set signcolumn=yes
+set colorcolumn=100
 
 if has('nvim')
+  " colorscheme desert
   set guicursor=
 else
   " set t_Co=8
@@ -110,6 +115,7 @@ nnoremap <leader>g :grep ''<left>
 nnoremap <leader>w yiw:grep <c-r>"
 nnoremap <leader>m zz
 nnoremap <leader>t zt
+nnoremap <leader>T zt<c-y><c-y><c-y><c-y><c-y>
 nnoremap <silent> <leader>c :botright cwindow<cr>
 nnoremap <silent> <leader>l :botright lwindow<cr>
 nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
@@ -119,7 +125,7 @@ xnoremap <leader>r :s/\V/gcI<left><left><left><left>
 nnoremap <leader>f :set foldlevel=
 nnoremap <leader>F :set foldlevel=100<cr>
 nnoremap <leader>d <c-^>
-nnoremap <leader>Cf :Cfilter
+nnoremap <leader>Cr :cfdo %s///g <bar> update<left><left><left><left><left><left><left><left><left><left><left><left>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
@@ -160,7 +166,7 @@ augroup autocmd_group
   autocmd FileType * setlocal formatoptions-=o
   autocmd FileType * :call SetSyntax()
   autocmd FileType,BufRead * :call VisibilityCallback()
-  autocmd FileType,BufRead * :call HighlightConflictMarkers()
+  " autocmd FileType,BufRead * :call HighlightConflictMarkers()
 augroup END
 
 " plugin config
@@ -174,23 +180,26 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
 
 let g:ale_linters = {
+\   'css': ['stylelint'],
+\   'eruby': [],
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
 \   'ruby': ['ruby', 'rubocop'],
 \   'scss': ['stylelint'],
-\   'eruby': [],
 \}
 
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
 \   'css': ['prettier'],
-\   'scss': ['prettier'],
+\   'javascript': ['prettier'],
+\   'javascriptreact': ['prettier'],
 \   'json': ['prettier'],
 \   'ruby': ['rubocop'],
+\   'scss': ['prettier', 'stylelint'],
 \}
 
 let g:jsx_ext_required = 0
 
-let g:rg_options = "-g '!db/data/*' -g '!**/vendor/*' -g '!**/sample-lessons/*' -g '!**/fonts/*' -g '!**/public/remark/*' -g '!**/mathjax*.{js,css}' -g '!spec/dummy/*'"
+let g:rg_options = "-g '!db/data/*' -g '!**/vendor/*' -g '!**/sample-lessons/*' -g '!**/fonts/*' -g '!**/public/remark/*' -g '!**/mathjax*.{js,css}' -g '!spec/dummy/*' -g '!*.lock'"
 
 if executable("rg")
   let &grepprg='rg -i --vimgrep --no-heading ' . g:rg_options
@@ -199,3 +208,4 @@ endif
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --sort-files ' . g:rg_options
 let g:fzf_layout = { 'down': '12' }
+let g:fzf_preview_window = ''

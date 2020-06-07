@@ -25,5 +25,8 @@ alias fap="cd ~/projects/facilitator-portal"
 alias kh="cd ~/projects/kh-iiab"
 
 alias smc="cd ~/projects/school-mobility-core"
+alias uor="cd ~/projects/uo-p3m"
 
 alias todo="vim ~/Documents/todo.txt"
+
+alias bx="bundle exec"
