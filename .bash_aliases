@@ -1,9 +1,10 @@
-alias d=cd
+alias notes="vim ~/Documents/notes.txt"
 
 alias gu="git status"
 alias glog="git log --stat"
 alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
 alias gmes="git log -1 --pretty=%B | xsel -bi"
+alias gdiff="git diff"
 
 alias gpusho="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
 alias gpushon="git push -u origin \$(git rev-parse --abbrev-ref HEAD) --no-verify"
@@ -26,7 +27,8 @@ alias kh="cd ~/projects/kh-iiab"
 
 alias smc="cd ~/projects/school-mobility-core"
 alias uor="cd ~/projects/uo-p3m"
-
-alias todo="vim ~/Documents/todo.txt"
+alias sep="cd ~/projects/sepup-lcms"
+alias tla="cd ~/projects/tlac"
+alias odt="cd ~/projects/odell-tea-lcms"
 
 alias bx="bundle exec"

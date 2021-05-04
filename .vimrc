@@ -77,7 +77,17 @@ let g:loaded_netrw=1
 set lazyredraw
 set number
 set signcolumn=yes
-set colorcolumn=100
+" set colorcolumn=100
+
+" nnoremap n j
+" nnoremap j n
+" nnoremap N J
+" nnoremap J N
+
+" nnoremap n j
+" nnoremap j n
+" nnoremap N J
+" nnoremap J N
 
 if has('nvim')
   " colorscheme desert
@@ -184,7 +194,7 @@ let g:ale_linters = {
 \   'eruby': [],
 \   'javascript': ['eslint'],
 \   'javascriptreact': ['eslint'],
-\   'ruby': ['ruby', 'rubocop'],
+\   'ruby': ['rubocop'],
 \   'scss': ['stylelint'],
 \}
 
@@ -194,8 +204,9 @@ let g:ale_fixers = {
 \   'javascriptreact': ['prettier'],
 \   'json': ['prettier'],
 \   'ruby': ['rubocop'],
-\   'scss': ['prettier', 'stylelint'],
+\   'scss': [],
 \}
+" \   'scss': ['prettier', 'stylelint'],
 
 let g:jsx_ext_required = 0
 

@@ -10,10 +10,13 @@ hi link valueKeyword cssAtKeyword
 hi link valueFrom cssAtKeyword
 hi link valueValue constant
 
+" syntax keyword cssPseudoClass global
+
 syntax clear cssVendor
 syntax clear cssAttrComma
 syntax clear cssSelectorOp
+syntax clear cssPseudoClass
+syntax clear cssPseudoClassId
 
 " syntax clear cssTagName
 " syntax clear cssBraces
-" syntax clear cssPseudoClassId
