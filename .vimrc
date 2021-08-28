@@ -5,19 +5,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 
 Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-" Plug 'othree/html5.vim'
-" Plug 'hail2u/vim-css3-syntax'
-" Plug 'cakebaker/scss-syntax.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'briancollins/vim-jst'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'slim-template/vim-slim'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -55,7 +48,7 @@ set wildmode=longest,list
 filetype indent off
 set expandtab
 set shiftwidth=2
-set tabstop=2
+set softtabstop=2
 
 set mouse=a
 
@@ -79,15 +72,15 @@ set number
 set signcolumn=yes
 " set colorcolumn=100
 
-" nnoremap n j
-" nnoremap j n
-" nnoremap N J
-" nnoremap J N
-
-" nnoremap n j
-" nnoremap j n
-" nnoremap N J
-" nnoremap J N
+nnoremap j <nop>
+xnoremap j <nop>
+onoremap j <nop>
+nnoremap k <nop>
+xnoremap k <nop>
+onoremap k <nop>
+nnoremap <c-s> <c-n>
+xnoremap <c-s> <c-n>
+onoremap <c-s> <c-n>
 
 if has('nvim')
   " colorscheme desert
@@ -112,11 +105,18 @@ function! CurrentHighlight()
 endfunction
 
 nnoremap <backspace> :
+
 nnoremap Y y$
-xnoremap gp "0p
+" nnoremap gY "py$
+" xnoremap gy "py
+" onoremap gy "py
+" nnoremap D "pD
+" xnoremap d "pd
+" onoremap d "pd
+
+xnoremap gp "_d"0P
 nnoremap <silent> du :diffupdate<cr>
 
-nnoremap <silent> <f2> :echo CurrentHighlight()<cr>
 nnoremap <f3> qq
 nnoremap <f4> q
 nnoremap <f5> @q
@@ -139,8 +139,6 @@ nnoremap <leader>Cr :cfdo %s///g <bar> update<left><left><left><left><left><left
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
-" nnoremap <silent> <leader>p :call fzf#run({'sink': 'e', 'down': '10'})<cr>
-" nnoremap <silent> <leader>b :call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val) && strlen(bufname(v:val)) > 0'), 'bufname(v:val)'), 'sink': 'e', 'down': '10'})<cr>
 nnoremap <silent> <leader>p :FZF<cr>
 nnoremap <silent> <leader>b :Buffers<cr>
 
@@ -200,17 +198,17 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
 \   'css': ['prettier'],
+\   'go': ['gofmt'],
 \   'javascript': ['prettier'],
 \   'javascriptreact': ['prettier'],
 \   'json': ['prettier'],
 \   'ruby': ['rubocop'],
-\   'scss': [],
+\   'scss': ['prettier', 'stylelint'],
 \}
-" \   'scss': ['prettier', 'stylelint'],
 
 let g:jsx_ext_required = 0
 
-let g:rg_options = "-g '!db/data/*' -g '!**/vendor/*' -g '!**/sample-lessons/*' -g '!**/fonts/*' -g '!**/public/remark/*' -g '!**/mathjax*.{js,css}' -g '!spec/dummy/*' -g '!*.lock'"
+let g:rg_options = "-g '!db/data/*' -g '!**/vendor/*' -g '!**/fonts/*' -g '!spec/dummy/*' -g '!*.lock'"
 
 if executable("rg")
   let &grepprg='rg -i --vimgrep --no-heading ' . g:rg_options
@@ -220,3 +218,5 @@ endif
 let $FZF_DEFAULT_COMMAND = 'rg --files --sort-files ' . g:rg_options
 let g:fzf_layout = { 'down': '12' }
 let g:fzf_preview_window = ''
+
+au BufRead,BufNewFile *.js.erb set filetype=javascript

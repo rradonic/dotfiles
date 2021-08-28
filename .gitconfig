@@ -14,3 +14,6 @@
 	keepBackup = false
 [push]
 	default = simple
+[alias]
+	co = checkout
+	lst = log --stat

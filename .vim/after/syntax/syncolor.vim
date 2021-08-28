@@ -1,4 +1,4 @@
-hi visual ctermbg=7 ctermfg=8 cterm=italic
+hi visual ctermbg=0 ctermfg=3
 
 hi cursorline cterm=none
 hi tabline cterm=none
@@ -20,7 +20,7 @@ hi foldcolumn ctermbg=none ctermfg=none
 
 hi todo ctermbg=none ctermfg=4
 
-hi linenr ctermfg=8 ctermbg=0
+hi linenr ctermfg=none ctermbg=0
 " hi cursorlinenr ctermfg=none
 
 hi spellbad ctermbg=1 ctermfg=0
