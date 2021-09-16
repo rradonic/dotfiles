@@ -37,3 +37,7 @@ hi alewarningsign ctermbg=0 ctermfg=4
 hi signcolumn ctermbg=0
 
 " hi statement ctermfg=3
+
+hi fzf1 ctermbg=0
+hi fzf2 ctermbg=0
+hi fzf3 ctermbg=0

@@ -54,7 +54,7 @@ set mouse=a
 
 set clipboard=unnamedplus
 
-set foldmethod=indent
+" set foldmethod=indent
 set foldlevel=1000
 set diffopt=filler,foldcolumn:0,context:2147483647,vertical
 
@@ -169,10 +169,20 @@ function! HighlightConflictMarkers()
   call matchadd('error', '^>>>>>>>.*', -1, 9997)
 endfunction
 
+" for vim-indent-object, include line above as well as line below indented region
+
+function! UseLinesAround()
+  vmap ai aI
+  vmap ii iI
+  omap ai aI
+  omap ii iI
+endfunction
+
 augroup autocmd_group
   autocmd!
   autocmd FileType * setlocal formatoptions-=o
   autocmd FileType * :call SetSyntax()
+  autocmd FileType * :call UseLinesAround()
   autocmd FileType,BufRead * :call VisibilityCallback()
   " autocmd FileType,BufRead * :call HighlightConflictMarkers()
 augroup END
