@@ -15,6 +15,8 @@ alias gpushf="git push --force-with-lease"
 alias gcheckpoint="git add . && git commit -m 'WIP [skip ci]'"
 
 alias grmaster="git checkout master && git pull && git checkout - && git rebase master"
+
 function gri () { git rebase -i HEAD~"$1"; }
+function srep () { $FZF_DEFAULT_COMMAND $RG_FILTER_SERIALIZED | xargs sed -i "s/$1/$2/g"; }
 
 alias bx="bundle exec"

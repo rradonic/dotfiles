@@ -135,7 +135,6 @@ xnoremap <leader>r :s/\V/gcI<left><left><left><left>
 nnoremap <leader>f :set foldlevel=
 nnoremap <leader>F :set foldlevel=100<cr>
 nnoremap <leader>d <c-^>
-nnoremap <leader>Cr :cfdo %s///g <bar> update<left><left><left><left><left><left><left><left><left><left><left><left>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '@'
 
@@ -218,14 +217,11 @@ let g:ale_fixers = {
 
 let g:jsx_ext_required = 0
 
-let g:rg_options = "-g '!db/data/*' -g '!**/vendor/*' -g '!**/fonts/*' -g '!spec/dummy/*' -g '!*.lock'"
-
 if executable("rg")
-  let &grepprg='rg -i --vimgrep --no-heading ' . g:rg_options
+  let &grepprg='rg -i --vimgrep --no-heading ' . $RG_FILTER_SERIALIZED
   set grepformat=%f:%l:%c:%m
 endif
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --sort-files ' . g:rg_options
 let g:fzf_layout = { 'down': '12' }
 let g:fzf_preview_window = ''
 
