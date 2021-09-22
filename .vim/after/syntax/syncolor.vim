@@ -1,7 +1,8 @@
 hi visual ctermbg=0 ctermfg=3
 
 hi cursorline cterm=none
-hi tabline cterm=none
+hi tabline cterm=reverse ctermfg=none ctermbg=none
+hi tablinesel cterm=none
 
 hi colorcolumn ctermbg=8
 hi search ctermbg=8 ctermfg=7
@@ -38,6 +39,6 @@ hi signcolumn ctermbg=0
 
 " hi statement ctermfg=3
 
-hi fzf1 ctermbg=0
-hi fzf2 ctermbg=0
-hi fzf3 ctermbg=0
+highlight fzf1 ctermfg=1 ctermbg=0
+highlight fzf2 ctermfg=2 ctermbg=0
+highlight fzf3 ctermfg=none ctermbg=0

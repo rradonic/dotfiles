@@ -13,10 +13,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'sheerun/vim-polyglot'
-
-if v:version >= 800
-  Plug 'w0rp/ale'
-end
+Plug 'w0rp/ale'
 
 packadd cfilter
 
@@ -70,7 +67,6 @@ let g:loaded_netrw=1
 set lazyredraw
 set number
 set signcolumn=yes
-" set colorcolumn=100
 
 nnoremap j <nop>
 xnoremap j <nop>
@@ -78,9 +74,6 @@ onoremap j <nop>
 nnoremap k <nop>
 xnoremap k <nop>
 onoremap k <nop>
-nnoremap <c-s> <c-n>
-xnoremap <c-s> <c-n>
-onoremap <c-s> <c-n>
 
 if has('nvim')
   " colorscheme desert
@@ -107,13 +100,6 @@ endfunction
 nnoremap <backspace> :
 
 nnoremap Y y$
-" nnoremap gY "py$
-" xnoremap gy "py
-" onoremap gy "py
-" nnoremap D "pD
-" xnoremap d "pd
-" onoremap d "pd
-
 xnoremap gp "_d"0P
 nnoremap <silent> du :diffupdate<cr>
 
@@ -149,7 +135,7 @@ function! SetSyntax()
   set maxmempattern=100000
 endfunction
 
-function! VisibilityCallback()
+function! ShowConcealed()
   setlocal list
   setlocal conceallevel=0
 endfunction
@@ -182,8 +168,8 @@ augroup autocmd_group
   autocmd FileType * setlocal formatoptions-=o
   autocmd FileType * :call SetSyntax()
   autocmd FileType * :call UseLinesAround()
-  autocmd FileType,BufRead * :call VisibilityCallback()
-  " autocmd FileType,BufRead * :call HighlightConflictMarkers()
+  autocmd FileType,BufRead * :call ShowConcealed()
+  autocmd FileType,BufRead * :call HighlightConflictMarkers()
 augroup END
 
 " plugin config
@@ -225,4 +211,4 @@ endif
 let g:fzf_layout = { 'down': '12' }
 let g:fzf_preview_window = ''
 
-au BufRead,BufNewFile *.js.erb set filetype=javascript
+autocmd BufRead,BufNewFile *.js.erb set filetype=javascript
