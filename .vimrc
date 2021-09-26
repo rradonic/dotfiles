@@ -42,7 +42,6 @@ set textwidth=99
 set shortmess+=I
 set wildmode=longest,list
 
-filetype indent off
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -158,9 +157,7 @@ endfunction
 
 function! UseLinesAround()
   vmap ai aI
-  vmap ii iI
   omap ai aI
-  omap ii iI
 endfunction
 
 augroup autocmd_group
