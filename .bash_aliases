@@ -1,4 +1,4 @@
-alias notes="tmux rename-window notes && vim ~/Dropbox/Personal/notes.txt"
+alias notes="tmux rename-window notes && vim ~/Dropbox/Documents/vimwiki/index.wiki"
 
 alias gu="git status"
 alias glog="git log"

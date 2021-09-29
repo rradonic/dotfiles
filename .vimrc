@@ -15,6 +15,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 
+Plug 'vimwiki/vimwiki'
+
 packadd cfilter
 
 call plug#end()
@@ -73,10 +75,16 @@ onoremap j <nop>
 nnoremap k <nop>
 xnoremap k <nop>
 onoremap k <nop>
+nnoremap <c-s> <c-n>
+xnoremap <c-s> <c-n>
+onoremap <c-s> <c-n>
+nnoremap <c-x> <c-n>
+xnoremap <c-x> <c-n>
+onoremap <c-x> <c-n>
 
 if has('nvim')
   " colorscheme desert
-  set guicursor=
+  set guicursor=  
 else
   " set t_Co=8
   set ttymouse=xterm2
@@ -97,6 +105,7 @@ function! CurrentHighlight()
 endfunction
 
 nnoremap <backspace> :
+nnoremap <f2> :echo CurrentHighlight()<cr>
 
 nnoremap Y y$
 xnoremap gp "_d"0P
@@ -107,7 +116,9 @@ nnoremap <f4> q
 nnoremap <f5> @q
 
 nnoremap <leader>g :grep ''<left>
-nnoremap <leader>w yiw:grep <c-r>"
+xnoremap <leader>g y :grep -F '<C-r>"'
+" xnoremap <leader>g y:grep -F '<C-r>"'
+" nnoremap <leader>w yiw:grep <c-r>"
 nnoremap <leader>m zz
 nnoremap <leader>t zt
 nnoremap <leader>T zt<c-y><c-y><c-y><c-y><c-y>
@@ -207,5 +218,7 @@ endif
 
 let g:fzf_layout = { 'down': '12' }
 let g:fzf_preview_window = ''
+
+let g:vimwiki_conceallevel=0
 
 autocmd BufRead,BufNewFile *.js.erb set filetype=javascript
