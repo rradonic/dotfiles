@@ -75,9 +75,9 @@ onoremap j <nop>
 nnoremap k <nop>
 xnoremap k <nop>
 onoremap k <nop>
-nnoremap <c-s> <c-n>
-xnoremap <c-s> <c-n>
-onoremap <c-s> <c-n>
+" nnoremap <c-s> <c-n>
+" xnoremap <c-s> <c-n>
+" onoremap <c-s> <c-n>
 nnoremap <c-x> <c-n>
 xnoremap <c-x> <c-n>
 onoremap <c-x> <c-n>

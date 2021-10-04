@@ -11,6 +11,6 @@ hi VimwikiHeader5 ctermfg=2
 hi VimwikiHeader6 ctermfg=2
 
 " hi VimwikiPreDelim ctermfg=1
-hi VimwikiPre ctermfg=4
+hi VimwikiPre ctermfg=1
 
 " let g:vimwiki_automatic_nested_syntaxes

@@ -1,4 +1,5 @@
 hi visual ctermbg=0 ctermfg=3
+" hi visual ctermfg=none ctermbg=0 cterm=reverse
 
 hi cursorline cterm=none
 hi tabline cterm=reverse ctermfg=none ctermbg=none
