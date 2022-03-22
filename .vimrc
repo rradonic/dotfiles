@@ -50,7 +50,7 @@ set softtabstop=2
 
 set mouse=a
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " set foldmethod=indent
 set foldlevel=1000
@@ -128,7 +128,7 @@ nnoremap <silent> <leader>o :let @+ = expand("%")<cr>
 
 nnoremap <leader>r :%s/\V/gcI<left><left><left><left>
 xnoremap <leader>r :s/\V/gcI<left><left><left><left>
-nnoremap <leader>f :set foldlevel=
+nnoremap <leader>f zf
 nnoremap <leader>F :set foldlevel=100<cr>
 nnoremap <leader>d <c-^>
 
