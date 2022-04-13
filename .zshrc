@@ -8,15 +8,6 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden --sort-files $RG_FILTER_SERIALIZ
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
 
-setopt PROMPT_SUBST
-autoload -U colors && colors
-autoload -Uz vcs_info
-
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '(%b) '
-zstyle ':vcs_info:git:*' actionformats '(%b|%a) '
-
-PS1='%{$fg[yellow]%}%* %{$fg[blue]%}%~ %{$fg[magenta]%}${vcs_info_msg_0_}%{$reset_color%}$ '
 export THINKIFICPATH=/Users/ranko.radonic/Thinkific
 
 source ~/.zsh_aliases
@@ -27,3 +18,8 @@ fi
 
 # Allow keychain access to ssh keys, this is used by containers
 ssh-add --apple-load-keychain &> /dev/null
+
+fpath+=$HOME/.zsh/pure
+
+autoload -U promptinit; promptinit
+prompt pure
