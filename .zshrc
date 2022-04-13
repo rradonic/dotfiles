@@ -19,5 +19,11 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a) '
 PS1='%{$fg[yellow]%}%* %{$fg[blue]%}%~ %{$fg[magenta]%}${vcs_info_msg_0_}%{$reset_color%}$ '
 export THINKIFICPATH=/Users/ranko.radonic/Thinkific
 
+source ~/.zsh_aliases
+
+if [[ $(uname) = Darwin ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Allow keychain access to ssh keys, this is used by containers
 ssh-add --apple-load-keychain &> /dev/null

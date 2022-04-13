@@ -7,6 +7,5 @@ ln -s "${BASEDIR}/.gitignore" ~
 ln -s "${BASEDIR}/.tmux.conf" ~
 ln -s "${BASEDIR}/.vim" ~
 ln -s "${BASEDIR}/.vimrc" ~
-ln -s "${BASEDIR}/.zprofile" ~
 ln -s "${BASEDIR}/.zsh_aliases" ~
 ln -s "${BASEDIR}/.zshrc" ~
