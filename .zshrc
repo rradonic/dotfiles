@@ -8,7 +8,7 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden --sort-files $RG_FILTER_SERIALIZ
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
 
-export THINKIFICPATH=/Users/ranko.radonic/Thinkific
+export THINKIFICPATH=/Users/ranko.radonic/src/Thinkific
 
 source ~/.zsh_aliases
 
