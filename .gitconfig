@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [diff]
-	tool = vimdiff
+	colorMoved = plain
 ; [merge]
 ; 	tool = splice
 ; [mergetool "splice"]
@@ -17,3 +17,5 @@
 [alias]
 	co = checkout
 	lst = log --stat
+[pull]
+	rebase = true
