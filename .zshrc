@@ -23,3 +23,6 @@ fpath+=$HOME/.zsh/pure
 
 autoload -U promptinit; promptinit
 prompt pure
+
+# this is for thinkific dev containers
+export DEV_PACKAGES='zsh tmux ripgrep'
