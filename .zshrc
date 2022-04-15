@@ -21,6 +21,8 @@ ssh-add --apple-load-keychain &> /dev/null
 
 fpath+=$HOME/.zsh/pure
 
+PURE_GIT_PULL=0
+
 autoload -U promptinit; promptinit
 prompt pure
 
