@@ -1,6 +1,6 @@
 alias ll="ls -la --color"
 
-alias notes="tmux rename-window notes && vim ~/Dropbox/Documents/vimwiki/index.wiki"
+alias notes="vim ~/Dropbox/Documents/vimwiki/index.wiki"
 
 alias gu="git status"
 alias glog="git log"
