@@ -211,11 +211,6 @@ let g:ale_fixers = {
 
 let g:jsx_ext_required = 0
 
-if executable("rg")
-  let &grepprg='rg -i --vimgrep --no-heading ' . $RG_FILTER_SERIALIZED
-  set grepformat=%f:%l:%c:%m
-endif
-
 let g:fzf_layout = { 'down': '12' }
 let g:fzf_preview_window = ''
 
