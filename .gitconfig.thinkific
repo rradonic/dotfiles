@@ -1,6 +1,6 @@
 [user]
 	name = Ranko Radonic
-	email = ranko.radonic@gmail.com
+	email = ranko.radonic@thinkific.com
 [color]
 	ui = auto
 [diff]
@@ -12,3 +12,5 @@
 	lst = log --stat
 [pull]
 	rebase = true
+[core]
+	editor = code --wait
