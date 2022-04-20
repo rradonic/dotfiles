@@ -10,7 +10,7 @@ ln -s "${BASEDIR}/.zsh_aliases" ~
 ln -s "${BASEDIR}/.zshrc" ~
 
 if [[ $REMOTE_CONTAINERS ]]; then
-  ln -s "${BASEDIR}/.gitconfig.thinkific" ~
+  ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
 else
   ln -s "${BASEDIR}/.gitconfig" ~
 fi
