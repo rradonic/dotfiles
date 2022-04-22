@@ -1,6 +1,3 @@
-" hi visual ctermbg=0 ctermfg=3
-" hi visual ctermfg=none ctermbg=0 cterm=reverse
-
 hi cursorline cterm=none
 hi tabline cterm=reverse ctermfg=none ctermbg=none
 hi tablinesel cterm=none
@@ -22,21 +19,30 @@ hi foldcolumn ctermbg=none ctermfg=none
 
 hi todo ctermbg=none ctermfg=4
 
-" hi linenr ctermfg=none ctermbg=0
-" " hi cursorlinenr ctermfg=none
+"""""""""""""""""
+" dark mode start
 
-" hi spellbad ctermbg=1 ctermfg=0
-" hi spellcap ctermbg=4 ctermfg=0
+hi visual ctermbg=0 ctermfg=3
+" hi visual ctermfg=none ctermbg=0 cterm=reverse
 
-" hi error ctermbg=1 ctermfg=0
-" hi errormsg ctermfg=1 ctermfg=0
+hi linenr ctermfg=none ctermbg=0
+" hi cursorlinenr ctermfg=none
 
-" hi aleerrorsign ctermbg=0 ctermfg=1
-" hi alewarningsign ctermbg=0 ctermfg=4
-" " hi link aleerrorline spellbad
-" " hi link alewarningline spellcap
+hi spellbad ctermbg=1 ctermfg=0
+hi spellcap ctermbg=4 ctermfg=0
 
-" hi signcolumn ctermbg=0
+hi error ctermbg=1 ctermfg=0
+hi errormsg ctermfg=1 ctermfg=0
+
+hi aleerrorsign ctermbg=0 ctermfg=1
+hi alewarningsign ctermbg=0 ctermfg=4
+" hi link aleerrorline spellbad
+" hi link alewarningline spellcap
+
+hi signcolumn ctermbg=0
+
+"""""""""""""""
+" dark mode end
 
 " " hi statement ctermfg=3
 
