@@ -9,7 +9,7 @@
 	default = simple
 [alias]
 	co = checkout
-	lst = log --stat
+	si = switch
 [pull]
 	rebase = true
 [core]

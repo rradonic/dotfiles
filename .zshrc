@@ -4,8 +4,6 @@ setopt inc_append_history
 
 export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
 
-export THINKIFICPATH=/Users/ranko.radonic/src/Thinkific
-
 source ~/.zsh_aliases
 
 if [[ $(uname) = Darwin ]]; then
@@ -24,3 +22,8 @@ prompt pure
 
 # this is for thinkific dev containers
 export DEV_PACKAGES='zsh tmux'
+
+if [[ ! $REMOTE_CONTAINERS ]]; then
+  export THINKIFICPATH=/Users/ranko.radonic/src/thinkific
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi

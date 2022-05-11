@@ -12,3 +12,5 @@
 	si = switch
 [pull]
 	rebase = true
+[core]
+	editor = code --wait
