@@ -11,12 +11,12 @@ ln -s "${BASEDIR}/.zshrc" ~
 
 mkdir -p ~/.zsh
 
-cp "${BASEDIR}/.zsh/_git" ~
+ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 
 if [[ $REMOTE_CONTAINERS ]]; then
   ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
 else
-  cp "${BASEDIR}/.zsh/_pass" ~
+  ln -s "${BASEDIR}/.zsh/_pass" ~/.zsh
   ln -s "${BASEDIR}/.gitconfig" ~
 fi
 
