@@ -8,14 +8,13 @@ ln -s "${BASEDIR}/.vim" ~
 ln -s "${BASEDIR}/.vimrc" ~
 ln -s "${BASEDIR}/.zsh_aliases" ~
 ln -s "${BASEDIR}/.zshrc" ~
+cp -r "${BASEDIR}/.zsh" ~
 
 if [[ $REMOTE_CONTAINERS ]]; then
   ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
 else
   ln -s "${BASEDIR}/.gitconfig" ~
 fi
-
-mkdir -p "$HOME/.zsh"
 
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
