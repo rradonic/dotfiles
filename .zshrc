@@ -6,24 +6,27 @@ export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-rever
 
 source ~/.zsh_aliases
 
-if [[ $(uname) = Darwin ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# Allow keychain access to ssh keys, this is used by containers
-ssh-add --apple-load-keychain &> /dev/null
-
 fpath+=$HOME/.zsh/pure
+fpath+=$HOME/.zsh
 
 export PURE_GIT_PULL=0
 
 autoload -U promptinit; promptinit
+autoload -U compinit; compinit
+
 prompt pure
+
+if [[ ! $REMOTE_CONTAINERS ]]; then
+  if [[ $(uname) = Darwin ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+
+  export THINKIFICPATH=/Users/ranko.radonic/src/thinkific
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
 
 # this is for thinkific dev containers
 export DEV_PACKAGES='zsh tmux'
 
-if [[ ! $REMOTE_CONTAINERS ]]; then
-  export THINKIFICPATH=/Users/ranko.radonic/src/thinkific
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
-fi
+# allow keychain access to ssh keys, this is used by containers
+ssh-add --apple-load-keychain &> /dev/null
