@@ -1,3 +1,6 @@
+autoload -U select-word-style
+select-word-style bash
+
 setopt inc_append_history
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
