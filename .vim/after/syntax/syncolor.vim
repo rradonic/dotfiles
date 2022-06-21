@@ -19,11 +19,10 @@ hi foldcolumn ctermbg=none ctermfg=none
 
 hi todo ctermbg=none ctermfg=4
 
-"""""""""""""""""
 " dark mode start
 
-hi visual ctermbg=0 ctermfg=3
-" hi visual ctermfg=none ctermbg=0 cterm=reverse
+hi visual ctermbg=3 ctermfg=0
+" hi visual ctermbg=0
 
 hi linenr ctermfg=none ctermbg=0
 " hi cursorlinenr ctermfg=none
@@ -41,8 +40,13 @@ hi alewarningsign ctermbg=0 ctermfg=4
 
 hi signcolumn ctermbg=0
 
-"""""""""""""""
 " dark mode end
+
+" light mode start
+
+" hi signcolumn ctermbg=7
+
+" light mode end
 
 " " hi statement ctermfg=3
 

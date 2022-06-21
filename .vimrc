@@ -86,7 +86,7 @@ if has('nvim')
   " colorscheme desert
   set guicursor=  
 else
-  set t_Co=256
+  " set t_Co=256
   set ttymouse=xterm2
   set cryptmethod=blowfish
 end
