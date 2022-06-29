@@ -19,7 +19,8 @@ autoload -U compinit; compinit
 
 prompt pure
 
-if [[ ! $REMOTE_CONTAINERS ]]; then
+# this will only execute if we're not in a thinkific dev container
+if [[ $CODE_FOLDER != "/app" ]]; then
   if [[ $(uname) = Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
@@ -33,3 +34,5 @@ export DEV_PACKAGES='zsh tmux'
 
 # allow keychain access to ssh keys, this is used by containers
 ssh-add --apple-load-keychain &> /dev/null
+
+export LESS='-S'
