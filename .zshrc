@@ -35,4 +35,5 @@ export DEV_PACKAGES='zsh tmux'
 # allow keychain access to ssh keys, this is used by containers
 ssh-add --apple-load-keychain &> /dev/null
 
-export LESS='-S'
+export LESS='-SR'
+export DISABLE_SPRING=1
