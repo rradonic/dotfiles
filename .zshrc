@@ -25,7 +25,7 @@ if [[ $CODE_FOLDER != "/app" ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  export THINKIFICPATH=/Users/ranko.radonic/src/thinkific
+  export THINKIFICPATH=/Users/ranko.radonic/Thinkific
   . /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 

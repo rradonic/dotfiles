@@ -21,7 +21,7 @@ hi todo ctermbg=none ctermfg=4
 
 " dark mode start
 
-hi visual ctermbg=3 ctermfg=0
+hi visual ctermbg=8 ctermfg=7
 " hi visual ctermbg=0
 
 hi linenr ctermfg=none ctermbg=0

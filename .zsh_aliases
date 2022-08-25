@@ -11,8 +11,30 @@ alias gdiff="git diff"
 alias gg='cd `git rev-parse --show-toplevel`'
 alias gcheckpoint="git add . && git commit -m 'WIP'"
 alias grmaster="git checkout master && git pull && git checkout - && git rebase master"
-alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
-alias gmes="git log -1 --pretty=%B | xsel -bi"
+# alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
+# alias gmes="git log -1 --pretty=%B | xsel -bi"
+alias gbranch="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
+
+body_staging="[Jira Ticket]()
+
+Changes introduced in this pull request:
+
+"
+
+body_production="[Jira Ticket]()
+
+**New translations**: Yes or No
+**To be deployed with**: course-builder, course-player, course-player-v2, webhooks or None (link to corresponding PRs). Deploy the Rails changes first to be safe.
+**Must run rake task**: rake name_of:the_rake_task or No
+
+Deployment Checklist (make sure to check each one of the items before moving forward with the deployment):
+- [ ] I have a rollback plan in case anything go wrong to quickly recover the app
+- [ ] I'm in the working hours window (8AM - 5PM PST, Monday to Friday) or it is a hotfix
+- [ ] I know who the point people are and I can reach them in case something goes wrong
+"
+
+alias pr-staging="gh pr create --web --title $(gbranch) --body \"$body_staging\" --label \"Ready for Review\" --base staging"
+alias pr-production="gh pr create --web --title $(gbranch) --body \"$body_production\" --label \"Production\" --base master"
 
 function gri () {
   if [ $# -eq 0 ]; then
