@@ -33,8 +33,13 @@ Deployment Checklist (make sure to check each one of the items before moving for
 - [ ] I know who the point people are and I can reach them in case something goes wrong
 "
 
-alias pr-staging="gh pr create --web --title $(gbranch) --body \"$body_staging\" --label \"Ready for Review\" --base staging"
-alias pr-production="gh pr create --web --title $(gbranch) --body \"$body_production\" --label \"Production\" --base master"
+function pr-staging () {
+  gh pr create --web --title $(gbranch) --body "$body_staging" --label "Ready for Review" --base staging
+}
+
+function pr-production () {
+  gh pr create --web --title $(gbranch) --body "$body_production" --label "Production" --base master
+}
 
 function gri () {
   if [ $# -eq 0 ]; then
