@@ -21,7 +21,7 @@ Changes introduced in this pull request:
 
 "
 
-body_production="[Jira Ticket]()
+body_master="[Jira Ticket]()
 
 **New translations**: Yes or No
 **To be deployed with**: course-builder, course-player, course-player-v2, webhooks or None (link to corresponding PRs). Deploy the Rails changes first to be safe.
@@ -37,8 +37,8 @@ function pr-staging () {
   gh pr create --web --title $(gbranch) --body "$body_staging" --label "Ready for Review" --base staging
 }
 
-function pr-production () {
-  gh pr create --web --title $(gbranch) --body "$body_production" --label "Production" --base master
+function pr-master () {
+  gh pr create --web --title $(gbranch) --body "$body_master" --label "Production" --base master
 }
 
 function gri () {
