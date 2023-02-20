@@ -14,6 +14,7 @@ alias grmaster="git checkout master && git pull && git checkout - && git rebase 
 # alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
 # alias gmes="git log -1 --pretty=%B | xsel -bi"
 alias gbranch="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
+alias stripe-hooks="stripe listen --forward-to http://localhost:3000/events/stripe"
 
 body_staging="[Jira Ticket]()
 
