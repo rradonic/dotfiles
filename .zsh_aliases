@@ -5,6 +5,7 @@ alias notes="vim ~/Dropbox/Documents/vimwiki/index.wiki"
 alias gu="git status"
 alias glog="git log"
 alias gpushf="git push --force-with-lease"
+alias gpusho="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
 alias gdiff="git diff"
 
 alias gg='cd `git rev-parse --show-toplevel`'
