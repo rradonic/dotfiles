@@ -2,9 +2,10 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-PROMPT='%F{yellow}%*%f %F{blue}%~%f $vcs_info_msg_0_❯ '
+PROMPT='%F{blue}%~%f $vcs_info_msg_0_
+❯ '
 # RPROMPT=''
-zstyle ':vcs_info:git:*' formats '%F{240}(%b)%f '
+zstyle ':vcs_info:git:*' formats '%F{240}(%b)%f'
 zstyle ':vcs_info:*' enable git
 
 autoload -U select-word-style
