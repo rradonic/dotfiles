@@ -2,10 +2,11 @@ alias ll="ls -la --color"
 
 alias notes="vim ~/Dropbox/Documents/vimwiki/index.wiki"
 
+alias gbranch="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
 alias gu="git status"
 alias glog="git log"
 alias gpushf="git push --force-with-lease"
-alias gpusho="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
+alias gpusho="git push -u origin \$(gbranch)"
 alias gdiff="git diff"
 
 alias gg='cd `git rev-parse --show-toplevel`'
@@ -13,7 +14,6 @@ alias gcheckpoint="git add . && git commit -m 'WIP'"
 alias grmaster="git checkout master && git pull && git checkout - && git rebase master"
 # alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
 # alias gmes="git log -1 --pretty=%B | xsel -bi"
-alias gbranch="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
 alias stripe-hooks="stripe listen --forward-to http://localhost:3000/events/stripe"
 
 body_staging="[Jira Ticket]()

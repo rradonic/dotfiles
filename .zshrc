@@ -1,3 +1,12 @@
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+PROMPT='%F{yellow}%*%f %F{blue}%~%f $vcs_info_msg_0_❯ '
+# RPROMPT=''
+zstyle ':vcs_info:git:*' formats '%F{240}(%b)%f '
+zstyle ':vcs_info:*' enable git
+
 autoload -U select-word-style
 select-word-style bash
 
@@ -9,15 +18,9 @@ export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-rever
 
 source ~/.zsh_aliases
 
-fpath+=$HOME/.zsh/pure
 fpath+=$HOME/.zsh
 
-export PURE_GIT_PULL=0
-
-autoload -U promptinit; promptinit
-autoload -U compinit; compinit
-
-prompt pure
+autoload -U compinit && compinit
 
 # this will only execute if we're not in a thinkific dev container
 if [[ $CODE_FOLDER != "/app" ]]; then
