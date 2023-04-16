@@ -15,31 +15,15 @@ alias grmaster="git checkout master && git pull && git checkout - && git rebase 
 # alias gref="git rev-parse --short HEAD | tr -d '\n' | xsel -bi"
 # alias gmes="git log -1 --pretty=%B | xsel -bi"
 alias stripe-hooks="stripe listen --forward-to http://localhost:3000/events/stripe"
+alias bx="bundle exec"
 
-body_staging="[Jira Ticket]()
+function srep () {
+  if [ $# -eq 0 ]; then
+      echo "No arguments provided. Usage: srep [SEARCH_PATTERN] [REPLACE_PATTERN]"
+      return 1
+  fi
 
-Changes introduced in this pull request:
-
-"
-
-body_master="[Jira Ticket]()
-
-**New translations**: Yes or No
-**To be deployed with**: course-builder, course-player, course-player-v2, webhooks or None (link to corresponding PRs). Deploy the Rails changes first to be safe.
-**Must run rake task**: rake name_of:the_rake_task or No
-
-Deployment Checklist (make sure to check each one of the items before moving forward with the deployment):
-- [ ] I have a rollback plan in case anything go wrong to quickly recover the app
-- [ ] I'm in the working hours window (8AM - 5PM PST, Monday to Friday) or it is a hotfix
-- [ ] I know who the point people are and I can reach them in case something goes wrong
-"
-
-function pr-staging () {
-  gh pr create --web --title $(gbranch) --body "$body_staging" --label "Ready for Review" --base staging
-}
-
-function pr-master () {
-  gh pr create --web --title $(gbranch) --body "$body_master" --label "Production" --base master
+  $FZF_DEFAULT_COMMAND | xargs sed -i "s/$1/$2/g";
 }
 
 function gri () {
@@ -51,13 +35,33 @@ function gri () {
   git rebase -i HEAD~"$1";
 }
 
-function srep () {
-  if [ $# -eq 0 ]; then
-      echo "No arguments provided. Usage: srep [SEARCH_PATTERN] [REPLACE_PATTERN]"
-      return 1
-  fi
+# this is for thinkific dev containers
+if [[ $CODE_FOLDER == "/app" ]]; then
+  body_staging="[Jira Ticket]()
 
-  $FZF_DEFAULT_COMMAND | xargs sed -i "s/$1/$2/g";
-}
+  Changes introduced in this pull request:
 
-alias bx="bundle exec"
+  "
+
+  body_master="[Jira Ticket]()
+
+  **New translations**: Yes or No
+  **To be deployed with**: course-builder, course-player, course-player-v2, webhooks or None (link to corresponding PRs). Deploy the Rails changes first to be safe.
+  **Must run rake task**: rake name_of:the_rake_task or No
+
+  Deployment Checklist (make sure to check each one of the items before moving forward with the deployment):
+  - [ ] I have a rollback plan in case anything go wrong to quickly recover the app
+  - [ ] I'm in the working hours window (8AM - 5PM PST, Monday to Friday) or it is a hotfix
+  - [ ] I know who the point people are and I can reach them in case something goes wrong
+  "
+
+  function pr-staging () {
+    gh pr create --web --title $(gbranch) --body "$body_staging" --label "Ready for Review" --base staging
+  }
+
+  function pr-master () {
+    gh pr create --web --title $(gbranch) --body "$body_master" --label "Production" --base master
+  }
+fi
+
+

@@ -23,8 +23,8 @@ fpath+=$HOME/.zsh
 
 autoload -U compinit && compinit
 
-# this will only execute if we're not in a thinkific dev container
-if [[ $CODE_FOLDER != "/app" ]]; then
+# this will only execute if we're not in a container
+if [[ ! -f /.dockerenv ]]; then
   if [[ $(uname) = Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
