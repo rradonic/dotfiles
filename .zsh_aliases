@@ -39,21 +39,21 @@ function gri () {
 if [[ $CODE_FOLDER == "/app" ]]; then
   body_staging="[Jira Ticket]()
 
-  Changes introduced in this pull request:
+Changes introduced in this pull request:
 
-  "
+"
 
   body_master="[Jira Ticket]()
 
-  **New translations**: Yes or No
-  **To be deployed with**: course-builder, course-player, course-player-v2, webhooks or None (link to corresponding PRs). Deploy the Rails changes first to be safe.
-  **Must run rake task**: rake name_of:the_rake_task or No
+**New translations**: No
+**To be deployed with**: None
+**Must run rake task**: No
 
-  Deployment Checklist (make sure to check each one of the items before moving forward with the deployment):
-  - [ ] I have a rollback plan in case anything go wrong to quickly recover the app
-  - [ ] I'm in the working hours window (8AM - 5PM PST, Monday to Friday) or it is a hotfix
-  - [ ] I know who the point people are and I can reach them in case something goes wrong
-  "
+Deployment Checklist (make sure to check each one of the items before moving forward with the deployment):
+- [x] I have a rollback plan in case anything go wrong to quickly recover the app
+- [x] I'm in the working hours window (8AM - 5PM PST, Monday to Friday) or it is a hotfix
+- [x] I know who the point people are and I can reach them in case something goes wrong
+"
 
   function pr-staging () {
     gh pr create --web --title $(gbranch) --body "$body_staging" --label "Ready for Review" --base staging
