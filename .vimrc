@@ -66,8 +66,8 @@ let g:loaded_matchparen=1
 let g:loaded_netrw=1
 
 set lazyredraw
-set number
-set signcolumn=yes
+" set number
+" set signcolumn=yes
 
 nnoremap j <nop>
 xnoremap j <nop>
