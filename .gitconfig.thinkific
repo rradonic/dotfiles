@@ -15,3 +15,11 @@
 	rebase = true
 [core]
 	editor = code --wait
+
+# github commit signing
+[user]
+	signingkey = /run/secrets/ssh_key_pub
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
