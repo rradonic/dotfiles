@@ -5,7 +5,7 @@ setopt prompt_subst
 PROMPT='%F{blue}%~%f $vcs_info_msg_0_
 ❯ '
 # RPROMPT=''
-zstyle ':vcs_info:git:*' formats '%F{240}(%b)%f'
+zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
 
 autoload -U select-word-style
@@ -30,6 +30,8 @@ if [[ ! -f /.dockerenv ]]; then
   fi
 
   export THINKIFICPATH=/Users/ranko.radonic/Thinkific
+  export TMONOLITH=/Users/ranko.radonic/Thinkific/workspace/thinkific-dev
+  export TUNIFIED=/Users/ranko.radonic/Thinkific/workspace/graphql-federation
   # . /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 
