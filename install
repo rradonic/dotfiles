@@ -16,11 +16,17 @@ mkdir -p ~/.zsh
 ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 
 if [[ $REMOTE_CONTAINERS ]]; then
-  ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
+  # TODO call function with "${BASEDIR}/.gitconfig.thinkific"
 else
   ln -s "${BASEDIR}/.zsh/_pass" ~/.zsh
-  ln -s "${BASEDIR}/.gitconfig" ~
+  # TODO call function with "${BASEDIR}/.gitconfig"
 fi
 
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --key-bindings --no-completion --update-rc --no-bash --no-fish
+# TODO this needs to be a function
+# sed -n '/# SNIP/q;p' ~/.gitconfig > /tmp/.gitconfig.tmp
+# cat ~/tmp/.gitconfig.tmp > ~/.gitconfig
+# cat "${BASEDIR}/.gitconfig.thinkific" >> ~/.gitconfig
+#
+
+# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# ~/.fzf/install --key-bindings --no-completion --update-rc --no-bash --no-fish

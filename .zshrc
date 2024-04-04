@@ -20,8 +20,7 @@ export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-rever
 source ~/.zsh_aliases
 
 fpath+=$HOME/.zsh
-
-autoload -U compinit && compinit
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # this will only execute if we're not in a container
 if [[ ! -f /.dockerenv ]]; then
@@ -32,10 +31,12 @@ if [[ ! -f /.dockerenv ]]; then
   export THINKIFICPATH=/Users/ranko.radonic/Thinkific
   export TMONOLITH=/Users/ranko.radonic/Thinkific/workspace/thinkific-dev
   export TUNIFIED=/Users/ranko.radonic/Thinkific/workspace/graphql-federation
-  # . /opt/homebrew/opt/asdf/libexec/asdf.sh
+  . "$HOME/.asdf/asdf.sh"
 fi
 
-# this is for thinkific dev containers
+autoload -U compinit && compinit
+
+# packages to install inside of thinkific dev containers
 export DEV_PACKAGES='zsh tmux'
 
 # allow keychain access to ssh keys, this is used by containers
