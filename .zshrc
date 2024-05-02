@@ -31,6 +31,7 @@ if [[ ! -f /.dockerenv ]]; then
   export THINKIFICPATH=/Users/ranko.radonic/Thinkific
   export TMONOLITH=/Users/ranko.radonic/Thinkific/workspace/thinkific-dev
   export TUNIFIED=/Users/ranko.radonic/Thinkific/workspace/graphql-federation
+  export TCHALK=/Users/ranko.radonic/Thinkific/workspace/chalk-dev
   . "$HOME/.asdf/asdf.sh"
 fi
 

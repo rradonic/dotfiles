@@ -16,11 +16,11 @@ mkdir -p ~/.zsh
 ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 
 if [[ $REMOTE_CONTAINERS ]]; then
-  :
   # TODO call function with "${BASEDIR}/.gitconfig.thinkific"
-  # the colon above is a no-op to prevent a syntax error until we put something in this if block
+  ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
 else
   ln -s "${BASEDIR}/.zsh/_pass" ~/.zsh
+  ln -s "${BASEDIR}/.gitconfig" ~
   # TODO call function with "${BASEDIR}/.gitconfig"
 fi
 
