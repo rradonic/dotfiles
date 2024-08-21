@@ -15,14 +15,14 @@ mkdir -p ~/.zsh
 
 ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 
-if [[ $REMOTE_CONTAINERS ]]; then
-  # TODO call function with "${BASEDIR}/.gitconfig.thinkific"
-  ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
-else
+# if [[ $REMOTE_CONTAINERS ]]; then
+#   # TODO call function with "${BASEDIR}/.gitconfig.thinkific"
+#   ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
+# else
   ln -s "${BASEDIR}/.zsh/_pass" ~/.zsh
   ln -s "${BASEDIR}/.gitconfig" ~
   # TODO call function with "${BASEDIR}/.gitconfig"
-fi
+# fi
 
 # TODO this needs to be a function
 # sed -n '/# SNIP/q;p' ~/.gitconfig > /tmp/.gitconfig.tmp

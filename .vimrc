@@ -9,8 +9,8 @@ Plug 'tpope/vim-repeat'
 
 Plug 'michaeljsmith/vim-indent-object'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+" Plug 'junegunn/fzf.vim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
@@ -82,14 +82,9 @@ nnoremap <c-x> <c-n>
 xnoremap <c-x> <c-n>
 onoremap <c-x> <c-n>
 
-if has('nvim')
-  " colorscheme desert
-  set guicursor=  
-else
-  " set t_Co=256
-  set ttymouse=xterm2
-  set cryptmethod=blowfish
-end
+" set t_Co=256
+set ttymouse=xterm2
+set cryptmethod=blowfish
 
 " keyboard mappings
 
