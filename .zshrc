@@ -3,7 +3,7 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 PROMPT='%F{blue}%~%f $vcs_info_msg_0_
-❯ '
+> '
 # RPROMPT=''
 zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
@@ -13,9 +13,11 @@ select-word-style bash
 
 setopt inc_append_history
 
+zle_highlight+=(paste:none)
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
+# export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
 
 source ~/.zsh_aliases
 

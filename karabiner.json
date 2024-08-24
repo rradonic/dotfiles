@@ -78,7 +78,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open /System/Applications/Utilities/Terminal.app"
+                    "shell_command": "open /Applications/iTerm.app"
                   }
                 ],
                 "type": "basic"
