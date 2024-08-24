@@ -4,7 +4,8 @@ alias notes="vim ~/Dropbox/Documents/vimwiki/index.wiki"
 
 alias gbranch="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
 alias gu="git status"
-alias glog="git log"
+alias glog="git log --stat"
+alias glogp="git log -p"
 alias gpushf="git push --force-with-lease"
 alias gpusho="git push -u origin \$(gbranch)"
 alias gdiff="git diff"
@@ -63,5 +64,3 @@ Deployment Checklist (make sure to check each one of the items before moving for
     gh pr create --web --title $(gbranch) --body "$body_master" --label "Production" --base master
   }
 fi
-
-
