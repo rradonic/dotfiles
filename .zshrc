@@ -47,3 +47,4 @@ ssh-add --apple-load-keychain &> /dev/null
 
 export LESS='-SRF'
 export DISABLE_SPRING=1
+export DOCKER_CLI_HINTS=false
