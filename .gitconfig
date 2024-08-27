@@ -3,7 +3,7 @@
 	email = ranko.radonic@gmail.com
 [color]
 	ui = auto
-	pager = false
+	# pager = false
 [diff]
 	colorMoved = plain
 [push]
@@ -16,4 +16,4 @@
 	rebase = true
 [core]
 	editor = code --wait
-	pager = tig
+	# pager = tig
