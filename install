@@ -10,6 +10,7 @@ ln -s "${BASEDIR}/.zsh_aliases" ~
 ln -s "${BASEDIR}/.zshrc" ~
 ln -s "${BASEDIR}/.inputrc" ~
 ln -s "${BASEDIR}/.irbrc" ~
+ln -s "${BASEDIR}/.tigrc" ~
 
 mkdir -p ~/.zsh
 

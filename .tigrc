@@ -1,3 +1,5 @@
+set mouse = true
+
 bind pager C :/^commit
 bind pager D :/^diff
 bind diff D :/^diff
