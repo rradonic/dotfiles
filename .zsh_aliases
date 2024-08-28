@@ -18,7 +18,7 @@ alias grmaster="git checkout master && git pull && git checkout - && git rebase 
 alias stripe-hooks="stripe listen --forward-to http://localhost:3000/events/stripe"
 alias bx="bundle exec"
 
-alias devc="docker exec -it $(devcontainer exec hostname) zsh"
+alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
 
 function srep () {
   if [ $# -eq 0 ]; then
