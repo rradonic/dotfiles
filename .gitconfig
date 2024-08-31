@@ -1,6 +1,9 @@
 [user]
 	name = Ranko Radonic
 	email = ranko.radonic@gmail.com
+[core]
+	editor = code --wait
+	# pager = tig
 [color]
 	ui = auto
 	# pager = false
@@ -14,6 +17,3 @@
 	si = switch
 [pull]
 	rebase = true
-[core]
-	editor = code --wait
-	# pager = tig

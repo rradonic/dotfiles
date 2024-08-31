@@ -1,4 +1,5 @@
 set mouse = true
+set mouse-scroll = 1
 
 bind pager C :/^commit
 bind pager D :/^diff
