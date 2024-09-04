@@ -130,6 +130,21 @@
               },
               {
                 "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "mandatory": ["right_command", "right_option"],
+                    "optional": ["caps_lock"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open /Applications/Obsidian.app"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
                   "key_code": "h",
                   "modifiers": {
                     "mandatory": ["left_command", "left_option"],
