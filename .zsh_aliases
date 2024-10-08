@@ -19,7 +19,6 @@ alias stripe-hooks="stripe listen --forward-to http://localhost:3000/events/stri
 alias bx="bundle exec"
 
 alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
-alias codei="code-insiders"
 
 function srep () {
   if [ $# -eq 0 ]; then

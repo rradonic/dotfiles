@@ -2,7 +2,7 @@
 	name = Ranko Radonic
 	email = ranko.radonic@gmail.com
 [core]
-	editor = code-insiders --wait
+	editor = code --wait
 	# pager = tig
 [color]
 	ui = auto
