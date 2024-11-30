@@ -17,6 +17,7 @@ alias grmaster="git checkout master && git pull && git checkout - && git rebase 
 # alias gmes="git log -1 --pretty=%B | xsel -bi"
 alias stripe-hooks="stripe listen --forward-to http://localhost:3000/events/stripe"
 alias bx="bundle exec"
+alias nr="npm run"
 
 alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
 
