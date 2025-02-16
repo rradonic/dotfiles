@@ -15,8 +15,6 @@ setopt inc_append_history
 
 zle_highlight+=(paste:none)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
 
 source ~/.zsh_aliases
@@ -48,3 +46,6 @@ ssh-add --apple-load-keychain &> /dev/null
 export LESS='-SRF'
 export DISABLE_SPRING=1
 export DOCKER_CLI_HINTS=false
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)

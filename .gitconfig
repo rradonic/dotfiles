@@ -2,7 +2,7 @@
 	name = Ranko Radonic
 	email = ranko.radonic@gmail.com
 [core]
-	editor = code --wait
+	# editor = code --wait
 	# pager = tig
 [color]
 	ui = auto
@@ -19,8 +19,8 @@
 	rebase = true
 
 [commit]
-  gpgsign = true
+	gpgsign = true
 [gpg]
-  format = ssh
+	format = ssh
 [user]
 	signingkey = ~/.ssh/id_rsa
