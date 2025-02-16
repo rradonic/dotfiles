@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/site/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
@@ -12,7 +12,7 @@ packadd cfilter
 
 call plug#end()
 
-source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
+source $HOME/.local/share/nvim/site/plugged/vim-sensible/plugin/sensible.vim
 
 set scrolloff=0
 set sidescrolloff=1
