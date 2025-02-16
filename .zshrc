@@ -15,7 +15,7 @@ setopt inc_append_history
 
 zle_highlight+=(paste:none)
 
-# export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
+export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
 
 source ~/.zsh_aliases
 
