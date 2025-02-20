@@ -15,15 +15,18 @@ setopt inc_append_history
 
 zle_highlight+=(paste:none)
 
-export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
-
 source ~/.zsh_aliases
 
 fpath+=$HOME/.zsh
 fpath=(${ASDF_DIR}/completions $fpath)
 
-# this will only execute if we're not in a container
-if [[ ! -f /.dockerenv ]]; then
+if [[ -f /.dockerenv ]]; then
+  # this will only execute if we're in a container
+
+  # set up fzf key bindings and fuzzy completion, for fzf installed via git
+  source ~/.fzf.zsh
+else
+  # outside of container
   if [[ $(uname) = Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
@@ -32,7 +35,11 @@ if [[ ! -f /.dockerenv ]]; then
   export TMONOLITH=/Users/ranko.radonic/Thinkific/workspace/thinkific-dev
   export TUNIFIED=/Users/ranko.radonic/Thinkific/workspace/graphql-federation
   export TCHALK=/Users/ranko.radonic/Thinkific/workspace/chalk-dev
-  . "$HOME/.asdf/asdf.sh"
+
+  source "$HOME/.asdf/asdf.sh"
+
+  # set up fzf key bindings and fuzzy completion, for fzf installed via homebrew
+  source <(fzf --zsh)
 fi
 
 autoload -U compinit && compinit
@@ -47,5 +54,5 @@ export LESS='-SRF'
 export DISABLE_SPRING=1
 export DOCKER_CLI_HINTS=false
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
+
