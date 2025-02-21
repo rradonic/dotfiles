@@ -25,6 +25,8 @@ if [[ -f /.dockerenv ]]; then
 
   # set up fzf key bindings and fuzzy completion, for fzf installed via git
   source ~/.fzf.zsh
+
+  export EDITOR='code --wait'
 else
   # outside of container
   if [[ $(uname) = Darwin ]]; then
