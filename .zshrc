@@ -29,6 +29,7 @@ if [[ -f /.dockerenv ]]; then
   export EDITOR='code --wait'
 else
   # outside of container
+
   if [[ $(uname) = Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
@@ -52,7 +53,7 @@ export DEV_PACKAGES='zsh tmux'
 # allow keychain access to ssh keys, this is used by containers
 ssh-add --apple-load-keychain &> /dev/null
 
-export LESS='-SRF'
+export LESS='-SRFI'
 export DISABLE_SPRING=1
 export DOCKER_CLI_HINTS=false
 
