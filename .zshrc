@@ -23,10 +23,10 @@ fpath=(${ASDF_DIR}/completions $fpath)
 if [[ -f /.dockerenv ]]; then
   # this will only execute if we're in a container
 
+  export EDITOR='code --wait'
+
   # set up fzf key bindings and fuzzy completion, for fzf installed via git
   source ~/.fzf.zsh
-
-  export EDITOR='code --wait'
 else
   # outside of container
 
@@ -40,6 +40,8 @@ else
   export TCHALK=/Users/ranko.radonic/Thinkific/workspace/chalk-dev
 
   source "$HOME/.asdf/asdf.sh"
+
+  export EDITOR='vim'
 
   # set up fzf key bindings and fuzzy completion, for fzf installed via homebrew
   source <(fzf --zsh)
