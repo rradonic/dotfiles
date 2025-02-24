@@ -43,6 +43,9 @@ else
 
   export EDITOR='vim'
 
+  # this is required when EDITOR is set to 'vim' in order to keep default key bindings in zsh
+  bindkey -e
+
   # set up fzf key bindings and fuzzy completion, for fzf installed via homebrew
   source <(fzf --zsh)
 fi
