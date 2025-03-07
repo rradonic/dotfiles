@@ -14,6 +14,8 @@ call plug#end()
 
 source $HOME/.local/share/nvim/site/plugged/vim-sensible/plugin/sensible.vim
 
+set clipboard=unnamed
+
 set scrolloff=0
 set sidescrolloff=1
 

@@ -37,6 +37,7 @@ else
   export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
   export EDITOR='vim'
+  export HOMEBREW_NO_ENV_HINTS=1
 
   # this is required when EDITOR is set to 'vim' in order to keep default key bindings in zsh
   bindkey -e
