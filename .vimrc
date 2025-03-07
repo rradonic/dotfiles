@@ -14,6 +14,7 @@ call plug#end()
 
 source $HOME/.vim/plugged/vim-sensible/plugin/sensible.vim
 
+set hidden
 set clipboard=unnamed
 
 set scrolloff=0

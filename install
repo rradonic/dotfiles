@@ -15,17 +15,12 @@ ln -s "${BASEDIR}/.tigrc" ~
 mkdir -p ~/.zsh
 
 ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
+ln -s "${BASEDIR}/.gitconfig" ~
 
-# if [[ $REMOTE_CONTAINERS ]]; then
-#   # TODO call function with "${BASEDIR}/.gitconfig.thinkific"
-#   ln -s "${BASEDIR}/.gitconfig.thinkific" ~/.gitconfig
-# else
+if [[ -f /.dockerenv ]]; then
+  # in a container
+else
+  # outside of a container
+
   ln -s "${BASEDIR}/.zsh/_pass" ~/.zsh
-  ln -s "${BASEDIR}/.gitconfig" ~
-  # TODO call function with "${BASEDIR}/.gitconfig"
-# fi
-
-# TODO this needs to be a function
-# sed -n '/# SNIP/q;p' ~/.gitconfig > /tmp/.gitconfig.tmp
-# cat ~/tmp/.gitconfig.tmp > ~/.gitconfig
-# cat "${BASEDIR}/.gitconfig.thinkific" >> ~/.gitconfig
+fi
