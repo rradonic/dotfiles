@@ -18,7 +18,6 @@ zle_highlight+=(paste:none)
 source ~/.zsh_aliases
 
 fpath+=$HOME/.zsh
-fpath=(${ASDF_DIR}/completions $fpath)
 
 if [[ -f /.dockerenv ]]; then
   # this will only execute if we're in a container
@@ -34,12 +33,8 @@ else
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  export THINKIFICPATH=/Users/ranko.radonic/Thinkific
-  export TMONOLITH=/Users/ranko.radonic/Thinkific/workspace/thinkific-dev
-  export TUNIFIED=/Users/ranko.radonic/Thinkific/workspace/graphql-federation
-  export TCHALK=/Users/ranko.radonic/Thinkific/workspace/chalk-dev
-
-  source "$HOME/.asdf/asdf.sh"
+  fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
   export EDITOR='vim'
 
