@@ -29,7 +29,3 @@ ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 # sed -n '/# SNIP/q;p' ~/.gitconfig > /tmp/.gitconfig.tmp
 # cat ~/tmp/.gitconfig.tmp > ~/.gitconfig
 # cat "${BASEDIR}/.gitconfig.thinkific" >> ~/.gitconfig
-#
-
-# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-# ~/.fzf/install --key-bindings --no-completion --update-rc --no-bash --no-fish
