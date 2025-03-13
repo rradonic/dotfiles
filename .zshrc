@@ -1,4 +1,4 @@
-autoload -Uz vcs_info
+autoload -U vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
@@ -19,10 +19,10 @@ source ~/.zsh_aliases
 
 fpath+=$HOME/.zsh
 
+export EDITOR='code --wait'
+
 if [[ -f /.dockerenv ]]; then
   # this will only execute if we're in a container
-
-  export EDITOR='code --wait'
 
   # set up fzf key bindings and fuzzy completion, for fzf installed via git
   source ~/.fzf.zsh
@@ -36,7 +36,6 @@ else
   fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
   export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-  export EDITOR='vim'
   export HOMEBREW_NO_ENV_HINTS=1
 
   # this is required when EDITOR is set to 'vim' in order to keep default key bindings in zsh
