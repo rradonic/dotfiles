@@ -23,9 +23,6 @@ export EDITOR='code --wait'
 
 if [[ -f /.dockerenv ]]; then
   # this will only execute if we're in a container
-
-  # set up fzf key bindings and fuzzy completion, for fzf installed via git
-  source ~/.fzf.zsh
 else
   # outside of container
 
