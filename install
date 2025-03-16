@@ -19,6 +19,9 @@ ln -s "${BASEDIR}/.gitconfig" ~
 
 if [[ -f /.dockerenv ]]; then
   # in a container
+
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 else
   # outside of a container
 
