@@ -13,7 +13,7 @@
 	ui = auto
 	# pager = false
 [diff]
-	algorithm = histogram
+	# algorithm = histogram
 	colorMoved = plain
 	mnemonicPrefix = true
 [push]
