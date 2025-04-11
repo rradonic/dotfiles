@@ -38,32 +38,3 @@ function gri () {
 
   git rebase -i HEAD~"$1";
 }
-
-# this is for thinkific dev containers
-if [[ $CODE_FOLDER == "/app" ]]; then
-  body_staging="[Jira Ticket]()
-
-Changes introduced in this pull request:
-
-"
-
-  body_master="[Jira Ticket]()
-
-**New translations**: No
-**To be deployed with**: None
-**Must run rake task**: No
-
-Deployment Checklist (make sure to check each one of the items before moving forward with the deployment):
-- [x] I have a rollback plan in case anything go wrong to quickly recover the app
-- [x] I'm in the working hours window (8AM - 5PM PST, Monday to Friday) or it is a hotfix
-- [x] I know who the point people are and I can reach them in case something goes wrong
-"
-
-  function pr-staging () {
-    gh pr create --web --title $(gbranch) --body "$body_staging" --label "Ready for Review" --base staging
-  }
-
-  function pr-master () {
-    gh pr create --web --title $(gbranch) --body "$body_master" --label "Production" --base master
-  }
-fi
