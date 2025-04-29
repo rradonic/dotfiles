@@ -20,6 +20,8 @@ ln -s "${BASEDIR}/.gitconfig" ~
 if [[ -f /.dockerenv ]]; then
   # in a container
 
+  apt-get -y install tmux zsh
+
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install --key-bindings --completion --update-rc
 else
