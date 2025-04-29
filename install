@@ -21,16 +21,18 @@ if [[ -f /.dockerenv ]]; then
 
   ln -s "${BASEDIR}/.gitconfig.trustflight" ~/.gitconfig
 
+  echo 'deb http://deb.debian.org/debian bullseye-backports main' >> /etc/apt/sources.list.d/backports.list
+
   apt-get update
-  apt-get install -y zsh
+  apt-get install -y zsh tmux git fzf
 
   # install homebrew for newer packages
 
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.zshrc
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  # NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.zshrc
+  # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-  brew install git tmux fzf
+  # brew install git tmux fzf
 
   # apt-get update
   # apt-get -y install tmux zsh
