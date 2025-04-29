@@ -19,18 +19,18 @@ ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 if [[ -f /.dockerenv ]]; then
   # in a container
 
-  ln -s "${BASEDIR}/.gitconfig.trustflight" ~
+  ln -s "${BASEDIR}/.gitconfig.trustflight" ~/.gitconfig
 
-  # install homebrew
+  apt-get update
+  apt-get install -y zsh
+
+  # install homebrew for newer packages
 
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  # add homebrew to path
-  echo >> /root/.zshrc
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.zshrc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-  brew install tmux zsh fzf
+  brew install git tmux fzf
 
   # apt-get update
   # apt-get -y install tmux zsh
