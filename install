@@ -24,7 +24,8 @@ if [[ -f /.dockerenv ]]; then
   echo 'deb http://deb.debian.org/debian bullseye-backports main' >> /etc/apt/sources.list.d/backports.list
 
   apt-get update
-  apt-get install -y zsh tmux git fzf less
+  apt-get install -y zsh less
+  apt-get -t bullseye-backports install -y tmux git fzf
 else
   # outside of a container
 
