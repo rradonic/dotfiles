@@ -15,18 +15,24 @@ ln -s "${BASEDIR}/.tigrc" ~
 mkdir -p ~/.zsh
 
 ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
-ln -s "${BASEDIR}/.gitconfig" ~
 
 if [[ -f /.dockerenv ]]; then
   # in a container
 
-  apt-get update
-  apt-get -y install tmux zsh
+  ln -s "${BASEDIR}/.gitconfig.trustflight" ~
 
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install --key-bindings --completion --update-rc
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  brew install tmux zsh fzf
+
+  # apt-get update
+  # apt-get -y install tmux zsh
+
+  # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  # ~/.fzf/install --key-bindings --completion --update-rc
 else
   # outside of a container
 
+  ln -s "${BASEDIR}/.gitconfig" ~
   ln -s "${BASEDIR}/.zsh/_pass" ~/.zsh
 fi

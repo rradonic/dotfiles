@@ -1,0 +1,31 @@
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[init]
+	defaultBranch = main
+[user]
+	name = Ranko Radonic
+	email = ranko.radonic@trustflight.com
+[core]
+	# pager = tig
+[color]
+	ui = auto
+	# pager = false
+[diff]
+	# algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+# [fetch]
+# 	prune = true
+# 	pruneTags = true
+# 	all = true
+[alias]
+	co = checkout
+	si = switch
+[pull]
+	rebase = true
