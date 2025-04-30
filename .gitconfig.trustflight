@@ -29,3 +29,5 @@
 	si = switch
 [pull]
 	rebase = true
+[safe]
+	directory = /app
