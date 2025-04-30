@@ -20,12 +20,6 @@ if [[ -f /.dockerenv ]]; then
   # in a container
 
   ln -s "${BASEDIR}/.gitconfig.trustflight" ~/.gitconfig
-
-  echo 'deb http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list.d/backports.list
-
-  apt-get update
-  apt-get install -y zsh less
-  apt-get -t bookworm-backports install -y tmux git fzf ssh
 else
   # outside of a container
 
