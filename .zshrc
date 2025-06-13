@@ -11,6 +11,10 @@ zstyle ':vcs_info:*' enable git
 autoload -U select-word-style
 select-word-style bash
 
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
 setopt inc_append_history
 
 zle_highlight+=(paste:none)
