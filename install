@@ -19,7 +19,7 @@ ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 if [[ -f /.dockerenv ]]; then
   # in a container
 
-  ln -s "${BASEDIR}/.gitconfig.trustflight" ~/.gitconfig
+  ln -s "${BASEDIR}/.gitconfig.eh" ~/.gitconfig
 else
   # outside of a container
 

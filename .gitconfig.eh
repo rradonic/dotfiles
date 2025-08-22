@@ -6,7 +6,7 @@
 	defaultBranch = main
 [user]
 	name = Ranko Radonic
-	email = ranko.radonic@trustflight.com
+	email = ranko.radonic@employmenthero.com
 [core]
 	# pager = tig
 [color]

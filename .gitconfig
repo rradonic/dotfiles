@@ -30,9 +30,11 @@
 [pull]
 	rebase = true
 
-[commit]
-	gpgsign = true
-[gpg]
-	format = ssh
-[user]
-	signingkey = ~/.ssh/id_rsa
+# [commit]
+# 	gpgsign = true
+# [gpg]
+# 	format = ssh
+# [user]
+# 	signingkey = ~/.ssh/id_rsa
+[credential]
+	helper = osxkeychain
