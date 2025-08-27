@@ -44,6 +44,8 @@ else
 
   # set up fzf key bindings and fuzzy completion, for fzf installed via homebrew
   source <(fzf --zsh)
+
+  export NODE_EXTRA_CA_CERTS=~/certificates/netskope.crt
 fi
 
 autoload -U compinit && compinit
@@ -59,5 +61,4 @@ export DISABLE_SPRING=1
 export DOCKER_CLI_HINTS=false
 
 export FZF_DEFAULT_OPTS='--color=bg+:-1,fg+:3,hl+:1,info:-1 --no-bold --no-reverse --height=12'
-export NODE_EXTRA_CA_CERTS=~/certificates/netskope.crt
 
