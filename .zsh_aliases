@@ -22,7 +22,7 @@ alias nr="npm run"
 
 alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
 alias dl='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
-alias dc='docker compose'
+alias dk='docker compose'
 
 function srep () {
   if [ $# -eq 0 ]; then
