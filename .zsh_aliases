@@ -4,6 +4,7 @@ alias notes="vim ~/Dropbox/Documents/vimwiki/index.wiki"
 
 alias gbranch="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
 alias gu="git status"
+alias guu="git status -uno"
 alias glog="git log --stat"
 alias glogp="git log -p"
 alias gpushf="git push --force-with-lease"
@@ -20,6 +21,8 @@ alias bx="bundle exec"
 alias nr="npm run"
 
 alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
+alias dl='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+alias dc='docker compose'
 
 function srep () {
   if [ $# -eq 0 ]; then
