@@ -23,7 +23,7 @@ source ~/.zsh_aliases
 
 fpath+=$HOME/.zsh
 
-export EDITOR='code --wait'
+export EDITOR='code -n --wait'
 
 if [[ -f /.dockerenv ]]; then
   # this will only execute if we're in a container

@@ -22,7 +22,16 @@ alias nr="npm run"
 
 alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
 alias dl='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
-alias dk='docker compose'
+alias dc='docker compose'
+
+function dsh () {
+  if [ $# -eq 0 ]; then
+      echo "No arguments provided. Usage: dsh [SERVICE_NAME]"
+      return 1
+  fi
+
+  docker compose exec -it "$1" bash;
+}
 
 function srep () {
   if [ $# -eq 0 ]; then
