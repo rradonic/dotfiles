@@ -23,7 +23,7 @@ source ~/.zsh_aliases
 
 fpath+=$HOME/.zsh
 
-export EDITOR='code -n --wait'
+export EDITOR='code --wait'
 
 if [[ -f /.dockerenv ]]; then
   # this will only execute if we're in a container
@@ -56,7 +56,7 @@ export DEV_PACKAGES='zsh tmux'
 # allow keychain access to ssh keys, this is used by containers
 ssh-add --apple-load-keychain &> /dev/null
 
-export LESS='-SRFI'
+export LESS='-SRFI -x4'
 export DISABLE_SPRING=1
 export DOCKER_CLI_HINTS=false
 
