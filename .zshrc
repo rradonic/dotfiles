@@ -1,10 +1,8 @@
 autoload -U vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+precmd_functions+=( vcs_info )
 setopt prompt_subst
 PROMPT='%F{blue}%~%f $vcs_info_msg_0_
 > '
-# RPROMPT=''
 zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
 
