@@ -34,6 +34,7 @@ else
 
   fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
   export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+  export PATH="$HOME/.local/bin:$PATH"
 
   export HOMEBREW_NO_ENV_HINTS=1
 
