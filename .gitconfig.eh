@@ -31,3 +31,4 @@
 	rebase = true
 [safe]
 	directory = /app
+	directory = /employment-hero
