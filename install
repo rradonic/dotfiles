@@ -16,6 +16,10 @@ mkdir -p ~/.zsh
 
 ln -s "${BASEDIR}/.zsh/_git" ~/.zsh
 
+mkdir -p ~/.config/git
+
+ln -s "${BASEDIR}/ignore" ~/.config/git
+
 if [[ -f /.dockerenv ]]; then
   # in a container
 
