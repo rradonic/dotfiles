@@ -25,13 +25,23 @@ alias devc="docker exec -it \$(devcontainer exec hostname) zsh"
 alias dl='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 alias dc='docker compose'
 
+if [[ -f /.dockerenv ]]; then
+  # this will only execute if we're in a container
+else
+  # outside of container
+
+  alias heroclistag='herocli --server hero2.staging.ehrocks.com:443'
+  alias herocliprod='herocli --server hero2.ehrocks.com:443'
+  alias herocliint='herocli --server hero2.integration.ehrocks.com:443'
+fi
+
 function dsh () {
   if [ $# -eq 0 ]; then
       echo "No arguments provided. Usage: dsh [SERVICE_NAME]"
       return 1
   fi
 
-  docker compose exec -it "$1" bash;
+  docker compose exec -it "$1" zsh;
 }
 
 function srep () {
@@ -50,4 +60,22 @@ function gri () {
   fi
 
   git rebase -i HEAD~"$1";
+}
+
+git() {
+  if [[ "$1" == "rebase" ]]; then
+    echo "⚠️ WARNING: You are about to run 'git rebase'."
+    echo -n "Are you sure you want to proceed? (y/N): "
+    read -r response
+
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+      command git "$@"
+    else
+      echo "🚫 Rebase aborted."
+      return 1
+    fi
+  else
+    # Pass all other git commands through normally
+    command git "$@"
+  fi
 }
